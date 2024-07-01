@@ -16,7 +16,6 @@
  
  */
 
-using System;
 using System.Reflection;
 
 using AlastairLundy.Extensions.System.AssemblyExtensions;

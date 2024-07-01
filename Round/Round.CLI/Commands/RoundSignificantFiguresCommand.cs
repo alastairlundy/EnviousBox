@@ -85,8 +85,6 @@ internal class RoundSignificantFiguresCommand : Command<RoundSignificantFiguresC
             AnsiConsole.Write(ConsoleGridHelper.CreateResultGrid(providedValueLabel, providedValueActual, providedPrecisionLabel, providedPrecisionActual, resultLabel, resultActual));
             return 0;
         }
-
-        throw new NotImplementedException();
     }
 
     internal class Settings: BaseSettings

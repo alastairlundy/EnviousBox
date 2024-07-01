@@ -18,7 +18,7 @@
 
 using System;
 using System.ComponentModel;
-
+using System.Globalization;
 using AlastairLundy.Extensions.System.DecimalExtensions;
 
 using Round.Cli.Helpers;
@@ -57,13 +57,13 @@ internal class RoundSignificantFiguresCommand : Command<RoundSignificantFiguresC
 
         if (!settings.PrettyMode)
         {
-            AnsiConsole.WriteLine(roundedValue.ToString());
+            AnsiConsole.WriteLine(roundedValue.ToString(CultureInfo.CurrentCulture));
             return 0;
         }
         else {
 
-            var providedValueLabel = new Text($"{Resources.Input_ProvidedValue}:", new Style(Color.IndianRed)).LeftJustified();
-            var providedValueActual = new Text(settings.NumberToRound.ToString()!, new Style(Color.DarkSeaGreen)).Centered();
+            Text providedValueLabel = new Text($"{Resources.Input_ProvidedValue}:", new Style(Color.IndianRed)).LeftJustified();
+            Text providedValueActual = new Text(settings.NumberToRound.ToString()!, new Style(Color.DarkSeaGreen)).Centered();
 
             Text providedPrecisionLabel;
 
@@ -76,14 +76,13 @@ internal class RoundSignificantFiguresCommand : Command<RoundSignificantFiguresC
                 providedPrecisionLabel = new Text($"{Resources.Input_Rounding_SignificantFigures_NotProvided}:", new Style(Color.IndianRed)).LeftJustified();
             }
 
-            var providedPrecisionActual = new Text(settings.NumberOfSignificantFiguresToRoundTo.ToString(), new Style(Color.DarkSeaGreen)).Centered();
+            Text providedPrecisionActual = new Text(settings.NumberOfSignificantFiguresToRoundTo.ToString(), new Style(Color.DarkSeaGreen)).Centered();
 
-            var resultLabel = new Text($"{Resources.Input_RoundedValue}:", new Style(Color.IndianRed)).LeftJustified();
-            var resultActual = new Text(roundedValue.ToString(), new Style(Color.Gold1)).Centered();
+            Text resultLabel = new Text($"{Resources.Input_RoundedValue}:", new Style(Color.IndianRed)).LeftJustified();
+            Text resultActual = new Text(roundedValue.ToString(CultureInfo.CurrentCulture), new Style(Color.Gold1)).Centered();
 
 
-            AnsiConsole.Write(ConsoleGridHelper.CreateResultGrid(providedValueLabel,
-    providedValueActual, providedPrecisionLabel, providedPrecisionActual, resultLabel, resultActual));
+            AnsiConsole.Write(ConsoleGridHelper.CreateResultGrid(providedValueLabel, providedValueActual, providedPrecisionLabel, providedPrecisionActual, resultLabel, resultActual));
             return 0;
         }
 

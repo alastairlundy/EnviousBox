@@ -59,8 +59,8 @@ internal class RoundDecimalCommand : Command<RoundDecimalCommand.Settings>
         }
         else
         {
-            var providedValueLabel = new Text($"{Resources.Input_ProvidedValue}:", new Style(Color.IndianRed)).LeftJustified();
-            var providedValueActual = new Text(settings.NumberToRound.ToString()!, new Style(Color.DarkSeaGreen)).Centered();
+            Text providedValueLabel = new Text($"{Resources.Input_ProvidedValue}:", new Style(Color.IndianRed)).LeftJustified();
+            Text providedValueActual = new Text(settings.NumberToRound.ToString()!, new Style(Color.DarkSeaGreen)).Centered();
 
             Text providedPrecisionLabel;
 
@@ -73,10 +73,10 @@ internal class RoundDecimalCommand : Command<RoundDecimalCommand.Settings>
                 providedPrecisionLabel = new Text($"{Resources.Input_Rounding_DecimalPlaces_NotProvided}:", new Style(Color.IndianRed)).LeftJustified();
             }
 
-            var providedPrecisionActual = new Text(settings.NumberOfDecimalPlacesToUse.ToString(), new Style(Color.DarkSeaGreen)).Centered();
+            Text providedPrecisionActual = new Text(settings.NumberOfDecimalPlacesToUse.ToString(), new Style(Color.DarkSeaGreen)).Centered();
 
-            var resultLabel = new Text($"{Resources.Input_RoundedValue}:", new Style(Color.IndianRed)).LeftJustified();
-            var resultActual = new Text(roundedValue.ToString(CultureInfo.CurrentCulture), new Style(Color.Gold1)).Centered();
+            Text resultLabel = new Text($"{Resources.Input_RoundedValue}:", new Style(Color.IndianRed)).LeftJustified();
+            Text resultActual = new Text(roundedValue.ToString(CultureInfo.CurrentCulture), new Style(Color.Gold1)).Centered();
 
             AnsiConsole.Write(ConsoleGridHelper.CreateResultGrid(providedValueLabel, 
                 providedValueActual, providedPrecisionLabel, providedPrecisionActual, resultLabel, resultActual));

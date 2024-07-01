@@ -14,9 +14,8 @@
    limitations under the License.
  */
 
-using System;
 using System.Collections.Generic;
-using System.IO;
+
 using System.Security.Cryptography;
 
 using Spectre.Console;
@@ -50,14 +49,5 @@ public static class ConsoleHelper
         }
 
         return shift;
-    }
-
-    public static void SaveResultsToFile(string filePath, string[] results)
-    {
-        if (!File.Exists(filePath))
-        {
-            File.WriteAllLines(filePath, results);
-        }
-        AnsiConsole.WriteException(new ArgumentException());
     }
 }

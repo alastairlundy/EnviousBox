@@ -15,7 +15,7 @@
  */
 
 using System;
-
+using System.IO;
 using Caesar.Library;
 
 using Spectre.Console;
@@ -53,8 +53,16 @@ public class EncodeCommand : Command<EncodeCommand.Settings>
 
         if (settings.OutputFile != null)
         {
-            ConsoleHelper.SaveResultsToFile(settings.OutputFile, newValues);
-            return 0;
+            try
+            {
+                File.WriteAllLines(settings.OutputFile, newValues);
+                return 0;
+            }
+            catch (Exception exception)
+            {
+                AnsiConsole.WriteException(exception);
+                return -1;
+            }         
         }
         
         ConsoleHelper.PrintResults(newValues);

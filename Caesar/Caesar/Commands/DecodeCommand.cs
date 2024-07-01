@@ -15,9 +15,9 @@
  */
 
 using System;
-
+using System.ComponentModel;
+using System.IO;
 using Caesar.Library;
-
 using Spectre.Console;
 using Spectre.Console.Cli;
 
@@ -34,6 +34,7 @@ public class DecodeCommand : Command<DecodeCommand.Settings>
         public string? OutputFile { get; init; }
             
         [CommandOption("-s|--shift:<number_to_shift_by>")]
+        [DefaultValue(null)]
         public int? ShiftAmount { get; init; }
     }
 
@@ -53,11 +54,19 @@ public class DecodeCommand : Command<DecodeCommand.Settings>
 
         if (settings.OutputFile != null)
         {
-            ConsoleHelper.SaveResultsToFile(settings.OutputFile, newValues);
-            return 0;
+            try
+            {
+                File.WriteAllLines(settings.OutputFile, newValues);
+                return 0;
+            }
+            catch (Exception exception)
+            {
+                AnsiConsole.WriteException(exception);
+                return -1;
+            }
         }
         
         ConsoleHelper.PrintResults(newValues);
-        return 0;    
+        return 0;
     }
 }

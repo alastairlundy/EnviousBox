@@ -14,6 +14,7 @@
    limitations under the License.
  */
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -66,14 +67,29 @@ public class DecodeFileCommand : Command<DecodeFileCommand.Settings>
 
         if (settings.OutputFile == null)
         {
-            ConsoleHelper.SaveResultsToFile(settings.File, newValues.ToArray());
+            try
+            {
+                File.WriteAllLines(settings.File, newValues);
+                return 0;
+            }
+            catch (Exception exception)
+            {
+                AnsiConsole.WriteException(exception);
+                return -1;
+            }
         }
         else
         {
-            ConsoleHelper.SaveResultsToFile(settings.OutputFile!, newValues.ToArray());
+            try
+            {
+                File.WriteAllLines(settings.OutputFile, newValues);
+                return 0;
+            }
+            catch (Exception exception)
+            {
+                AnsiConsole.WriteException(exception);
+                return -1;
+            }        
         }
-
-       
-        return 0;
     }
 }

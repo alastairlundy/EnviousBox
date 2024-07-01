@@ -396,3 +396,9 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/Round/.idea
+/Pow/.idea
+/Far/.idea
+/Caesar/Caesar/.idea
+/Caesar/.idea
+/Average/.idea

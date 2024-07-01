@@ -92,7 +92,7 @@ internal class RoundSignificantFiguresCommand : Command<RoundSignificantFiguresC
         [CommandArgument(0, "<number_to_round>")]
         public decimal? NumberToRound { get; init; }
 
-        [CommandArgument(1, "<number_of_significant_figures>")]
+        [CommandOption("-sf|--significant-figures")]
         [DefaultValue(int.MinValue)]
         public int NumberOfSignificantFiguresToRoundTo { get; init; }
     }

@@ -29,7 +29,8 @@ using Spectre.Console.Cli;
 CommandApp app = new CommandApp();
 app.Configure(config =>
 {
-    config.AddCommand<RoundDecimalCommand>("")
+    config.AddCommand<RoundDecimalCommand>("decimal")
+        .WithAlias("")
         .WithAlias("decimal-places")
         .WithAlias("dp")
         .WithDescription(Resources.Command_Round_Decimal_Description)
@@ -43,7 +44,7 @@ app.Configure(config =>
         .WithExample("0.19458", "2")
         .WithExample("5.44832", "4");
 
-    config.SetApplicationVersion(Assembly.GetExecutingAssembly().GetProjectVersion().GetFriendlyVersionToString());
+    config.SetApplicationVersion(Assembly.GetExecutingAssembly().GetProjectVersion().ToFriendlyVersionString());
 });
 
 app.SetDefaultCommand<RoundDecimalCommand>();

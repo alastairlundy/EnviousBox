@@ -35,16 +35,16 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Content Include="..\LICENSE.txt">
-        <Link>LICENSE.txt</Link>
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Content>
-    </ItemGroup>
-
-    <ItemGroup>
       <None Update="NOTICE.txt">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\..\LICENSE.txt">
+        <Link>LICENSE.txt</Link>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>

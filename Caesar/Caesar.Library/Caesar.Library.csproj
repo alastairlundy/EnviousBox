@@ -7,7 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Content Include="..\LICENSE.txt">
+      <Content Include="..\..\LICENSE.txt">
         <Link>LICENSE.txt</Link>
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Content>

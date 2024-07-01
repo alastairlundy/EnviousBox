@@ -30,7 +30,8 @@ app.Configure(config =>
 {
     config.AddBranch<CommandSettings>("encode", add =>
     {
-        add.AddCommand<EncodeCommand>("")
+        add.AddCommand<EncodeCommand>("string")
+            .WithAlias("")
             .WithDescription(Resources.Command_Encode_Label);
         
         add.AddCommand<EncodeFileCommand>("file");
@@ -38,7 +39,8 @@ app.Configure(config =>
     
     config.AddBranch<CommandSettings>("decode", add =>
     {
-        add.AddCommand<DecodeCommand>("")
+        add.AddCommand<DecodeCommand>("string")
+            .WithAlias("")
             .WithDescription(Resources.Command_Decode_Label);
         
         add.AddCommand<DecodeFileCommand>("file");

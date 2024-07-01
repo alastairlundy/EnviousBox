@@ -1,22 +1,22 @@
-﻿namespace Far.Library;
+﻿/*
+     Copyright 2024 Alastair Lundy
 
-    internal class FileManipulator
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="path"></param>
-        /// <param name="fileName"></param>
-        /// <param name="contents"></param>
-        public static void SaveFile(string path, string fileName, string[] contents)
-        {
-            path = Path.Combine(path, fileName);
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
 
-            if (File.Exists(path))
-            {
-                File.Delete(path);
-            }
+       http://www.apache.org/licenses/LICENSE-2.0
 
-            File.WriteAllLines(path, contents);
-        }
-    }
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ */
+
+namespace Far.Library;
+
+internal class FileManipulator
+{
+        
+}

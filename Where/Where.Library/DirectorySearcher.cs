@@ -2,7 +2,7 @@
 
 public class DirectorySearcher
 {
-    public static bool IsFileOrFolderNamed(string name)
+    public static bool DoesFileOrFolderHaveSpecifiedName(string name)
     {
         
     }

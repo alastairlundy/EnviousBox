@@ -15,10 +15,7 @@
  */
 
 using System.Reflection;
-
-using AlastairLundy.Extensions.System.AssemblyExtensions;
-using AlastairLundy.Extensions.System.VersionExtensions;
-
+using AlastairLundy.Extensions.System;
 using Caesar.Commands;
 using Caesar.localizations;
 
@@ -47,7 +44,7 @@ app.Configure(config =>
     });
 
     
-    config.SetApplicationVersion(Assembly.GetExecutingAssembly().GetProjectVersion().ToFriendlyVersionString());
+    config.SetApplicationVersion(Assembly.GetExecutingAssembly().GetName().Version.ToFriendlyVersionString());
 });
 
 return app.Run(args);

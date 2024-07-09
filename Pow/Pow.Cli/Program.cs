@@ -18,9 +18,6 @@
 
 using System.Reflection;
 
-using AlastairLundy.Extensions.System.AssemblyExtensions;
-using AlastairLundy.Extensions.System.VersionExtensions;
-
 using Pow.Cli.Commands;
 
 using Spectre.Console.Cli;
@@ -42,8 +39,8 @@ app.Configure(config =>
 
     config.AddCommand<PowerCommand>("power")
         .WithAlias("pwr");
-    
-    config.SetApplicationVersion(Assembly.GetExecutingAssembly().GetProjectVersion().ToFriendlyVersionString());
+
+    config.UseAssemblyInformationalVersion();
 });
 
 return app.Run(args);

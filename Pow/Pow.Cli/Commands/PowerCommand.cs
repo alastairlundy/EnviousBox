@@ -19,10 +19,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-
-using AlastairLundy.Extensions.System.DecimalArrayExtensions;
-using AlastairLundy.Extensions.System.Maths;
-
+using AlastairLundy.Extensions.Collections.IEnumerables;
+using AlastairLundy.Extensions.Maths.Powers;
 using Pow.Cli.Localizations;
 
 using Spectre.Console;
@@ -50,7 +48,7 @@ public class PowerCommand : Command<PowerCommand.Settings>
 
         foreach (decimal input in settings.Inputs)
         {
-            decimal power = Power.ToDecimal(input, (decimal)settings.Exponent);
+            decimal power = input.Power((decimal)settings.Exponent);
             
             results.Add(power);
         }
@@ -61,7 +59,7 @@ public class PowerCommand : Command<PowerCommand.Settings>
             {
                 if (!File.Exists(settings.OutputFile))
                 {
-                    File.WriteAllLines(settings.OutputFile, results.ToArray().ToStringArray());
+                    File.WriteAllLines(settings.OutputFile, results.ToArray().ToStringEnumerable());
                     AnsiConsole.WriteLine($"{Resources.FileSaved_Success} {settings.OutputFile}");
                     return 0;
                 }
@@ -77,7 +75,7 @@ public class PowerCommand : Command<PowerCommand.Settings>
         // ReSharper disable once RedundantIfElseBlock
         else
         {
-            foreach (string result in results.ToArray().ToStringArray())
+            foreach (string result in results.ToStringEnumerable())
             {
                 AnsiConsole.WriteLine(result);
             }

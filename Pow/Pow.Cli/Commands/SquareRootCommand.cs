@@ -20,9 +20,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-using AlastairLundy.Extensions.System.DecimalArrayExtensions;
-using AlastairLundy.Extensions.System.DecimalExtensions;
-using AlastairLundy.Extensions.System.Maths;
+using AlastairLundy.Extensions.Collections.IEnumerables;
+
+using AlastairLundy.Extensions.Maths.Powers;
+
 using Pow.Cli.Localizations;
 
 using Spectre.Console;
@@ -55,7 +56,7 @@ public class SquareRootCommand : Command<SquareRootCommand.Settings>
             {
                 if (!File.Exists(settings.OutputFile))
                 {
-                    File.WriteAllLines(settings.OutputFile, results.ToArray().ToStringArray());
+                    File.WriteAllLines(settings.OutputFile, results.ToArray().ToStringEnumerable());
                     AnsiConsole.WriteLine($"{Resources.FileSaved_Success} {settings.OutputFile}");
                     return 0;
                 }
@@ -71,7 +72,7 @@ public class SquareRootCommand : Command<SquareRootCommand.Settings>
         // ReSharper disable once RedundantIfElseBlock
         else
         {
-            foreach (string result in results.ToArray().ToStringArray())
+            foreach (string result in results.ToStringEnumerable())
             {
                 AnsiConsole.WriteLine(result);
             }

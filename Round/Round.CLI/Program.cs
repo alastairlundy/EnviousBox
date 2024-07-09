@@ -17,10 +17,7 @@
  */
 
 using System.Reflection;
-
-using AlastairLundy.Extensions.System.AssemblyExtensions;
-using AlastairLundy.Extensions.System.VersionExtensions;
-
+using AlastairLundy.Extensions.System;
 using Round.Cli.Commands;
 using Round.Cli.Localizations;
 
@@ -44,7 +41,7 @@ app.Configure(config =>
         .WithExample("0.19458", "2")
         .WithExample("5.44832", "4");
 
-    config.SetApplicationVersion(Assembly.GetExecutingAssembly().GetProjectVersion().ToFriendlyVersionString());
+    config.SetApplicationVersion(Assembly.GetExecutingAssembly().GetName().Version.ToFriendlyVersionString());
 });
 
 app.SetDefaultCommand<RoundDecimalCommand>();

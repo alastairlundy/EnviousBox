@@ -19,7 +19,8 @@
 using System;
 using System.ComponentModel;
 using System.Globalization;
-using AlastairLundy.Extensions.System.DecimalExtensions;
+
+using AlastairLundy.Extensions.Maths.SignificantFigures;
 
 using Round.Cli.Helpers;
 using Round.Cli.Localizations;

@@ -14,9 +14,11 @@
    limitations under the License.
  */
 
+using System;
 using System.Globalization;
+using System.IO;
 
-using AlastairLundy.Extensions.System.Maths.Averages;
+using AlastairLundy.Extensions.Maths.Averages;
 
 using Average.Helpers;
 
@@ -39,9 +41,10 @@ public class MedianCommand : Command<MedianCommand.Settings>
         if (settings.Inputs == null)
         {
             AnsiConsole.WriteException(new NullReferenceException());
+            return -1;
         }
 
-        decimal median = Median.OfDecimals(settings.Inputs);
+        decimal median = settings.Inputs.Median();
 
         if (settings.FileOutput != null)
         {

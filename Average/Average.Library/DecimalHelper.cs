@@ -14,6 +14,7 @@
    limitations under the License.
  */
 
+using System.Collections.Generic;
 using System.Globalization;
 
 namespace Average.Library;
@@ -22,7 +23,7 @@ public class DecimalHelper
 {
     public static decimal[] ConvertInputToDecimal(string[] values)
     {
-        List<decimal> newValues = new List<decimal>();
+        List<decimal> newValues = new();
 
         foreach (string value in values)
         {

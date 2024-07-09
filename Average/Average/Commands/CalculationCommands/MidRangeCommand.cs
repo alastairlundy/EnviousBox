@@ -14,8 +14,11 @@
    limitations under the License.
  */
 
-using AlastairLundy.Extensions.System.Maths.Averages;
 
+using System;
+using System.Globalization;
+using System.IO;
+using AlastairLundy.Extensions.Maths.Averages;
 using Average.Helpers;
 using Average.Localizations;
 
@@ -36,15 +39,16 @@ public class MidRangeCommand : Command<MidRangeCommand.Settings>
         if (settings.Inputs == null)
         {
             AnsiConsole.WriteException(new NullReferenceException());
+            return -1;
         }
 
-        decimal midRange = MidRange.OfDecimals(settings.Inputs);
+        decimal midRange = settings.Inputs.MidRange();
 
         if (settings.FileOutput != null)
         {
             try
             {
-                File.WriteAllLines(settings.FileOutput!, new string[] { midRange.ToString() });
+                File.WriteAllLines(settings.FileOutput!, new string[] { midRange.ToString(CultureInfo.CurrentCulture) });
                 AnsiConsole.WriteLine($"{Resources.File_Save_Success} {settings.FileOutput}");
 
                 return 0;

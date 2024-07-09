@@ -14,7 +14,12 @@
    limitations under the License.
  */
 
-using AlastairLundy.Extensions.System.Maths.Averages;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+using AlastairLundy.Extensions.Maths.Averages;
 
 using Average.Helpers;
 using Average.Library;
@@ -38,15 +43,16 @@ public class ModeCommand : Command<ModeCommand.Settings>
         if (settings.Inputs == null)
         {
             AnsiConsole.WriteException(new NullReferenceException());
+            return -1;
         }
 
-        decimal[] modes = Mode.OfDecimals(settings.Inputs);
+        IEnumerable<decimal> modes = settings.Inputs.Mode();
 
         if (settings.FileOutput != null)
         {
             try
             {
-                File.WriteAllLines(settings.FileOutput!, DecimalHelper.ConvertDecimalsToStrings(modes));
+                File.WriteAllLines(settings.FileOutput!, DecimalHelper.ConvertDecimalsToStrings(modes.ToArray()));
                 AnsiConsole.WriteLine($"{Resources.File_Save_Success} {settings.FileOutput}");
 
                 return 0;
@@ -61,7 +67,7 @@ public class ModeCommand : Command<ModeCommand.Settings>
         // ReSharper disable once RedundantIfElseBlock
         else
         {
-            AnsiConsole.Write(GridCreator.CreateGridWithRows(modes));
+            AnsiConsole.Write(GridCreator.CreateGridWithRows(modes.ToArray()));
             return 0;
         }
     }

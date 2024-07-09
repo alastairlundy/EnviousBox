@@ -14,15 +14,16 @@
    limitations under the License.
  */
 
-using AlastairLundy.Extensions.System.Maths.Averages;
 
+using System;
 using Average.Helpers;
 using Average.Localizations;
 
 using Spectre.Console;
 
 using System.Globalization;
-
+using System.IO;
+using AlastairLundy.Extensions.Maths.Averages;
 using Spectre.Console.Cli;
 
 namespace Average.Commands.CalculationCommands;
@@ -39,9 +40,10 @@ public class InterquartileMeanCommand : Command<InterquartileMeanCommand.Setting
         if (settings.Inputs == null)
         {
             AnsiConsole.WriteException(new NullReferenceException());
+            return -1;
         }
 
-        decimal interquartileMean = InterquartileMean.ToDecimal(settings.Inputs);
+        decimal interquartileMean = settings.Inputs.InterquartileMean();
 
         if (settings.FileOutput != null)
         {

@@ -14,10 +14,10 @@
    limitations under the License.
  */
 
+using System;
 using System.Globalization;
-
-using AlastairLundy.Extensions.System.Maths.Averages;
-
+using System.IO;
+using AlastairLundy.Extensions.Maths.Averages;
 using Average.Helpers;
 using Average.Localizations;
 
@@ -38,9 +38,10 @@ public class ArithmeticMeanCommand : Command<ArithmeticMeanCommand.Settings>
         if (settings.Inputs == null)
         {
             AnsiConsole.WriteException(new NullReferenceException());
+            return -1;
         }
 
-        decimal geometricMean = ArithmeticMean.ToDecimal(settings.Inputs);
+        decimal geometricMean = settings.Inputs.ArithmeticMean();
 
         if (settings.FileOutput != null)
         {

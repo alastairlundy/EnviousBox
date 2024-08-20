@@ -6,4 +6,12 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="Localizations\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AlastairLundy.Extensions.Collections" Version="5.*" />
+    </ItemGroup>
+
 </Project>

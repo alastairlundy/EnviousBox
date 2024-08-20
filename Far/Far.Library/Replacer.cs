@@ -21,76 +21,108 @@ public static class Replacer
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="filePath"></param>
+    /// <param name="enumerable"></param>
     /// <param name="existingChar"></param>
     /// <param name="replacementChar"></param>
     /// <returns></returns>
-    public static string[] ReplaceCharacter(string filePath, char existingChar, char replacementChar)
+    public static IEnumerable<string> ReplaceCharacter(IEnumerable<string> enumerable, char existingChar, char replacementChar)
     {
-        string[] lines = File.ReadAllLines(filePath);
+        List<string> output = new();
+        output.TrimExcess();
+        
+        string[] strings = enumerable.ToArray();
 
-        foreach (string line in lines)
+        foreach (string s in strings)
         {
-            string[] words = line.Split(' ');
+            string[] words = s.Split(' ');
 
-            for(int index = 0; index < words.Length; index++)
+            for (int index = 0; index < words.Length; index++)
             {
-                for(int characters = 0; characters < words[index].Length; characters++)
+                for (int characters = 0; characters < words[index].Length; characters++)
                 {
                     if (words[index][characters].Equals(existingChar))
                     {
                         words[index] = words[index].Replace(existingChar, replacementChar);
-                    }   
+                    }
                 }
             }
+
+            string? newWords = words.ToString();
+            
+            if (newWords is not null)
+            {
+                output.Add(newWords);
+            }
+             
         }
 
-        return lines;
+        return output;
     }
 
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="filePath"></param>
+    /// <param name="enumerable"></param>
     /// <param name="existingString"></param>
     /// <param name="replacementString"></param>
     /// <returns></returns>
-    public static string[] ReplaceExactMatch(string filePath, string existingString, string replacementString)
+    public static IEnumerable<string> ReplaceExactMatch(IEnumerable<string> enumerable, string existingString, string replacementString)
     {
-        string[] lines = File.ReadAllLines(filePath);
-
-        foreach (string line in lines)
+        List<string> output = new();
+        
+        foreach (string str in enumerable)
         {
-            string[] words = line.Split(' ');
+            string[] lines = str.Split(Environment.NewLine);
 
-            for (int index = 0; index < words.Length; index++)
+            foreach (string line in lines)
             {
-                if (words[index].Equals(existingString)){
-                    words[index] = replacementString;
+                string[] words = line.Split(' ');
+
+                for (int index = 0; index < words.Length; index++)
+                {
+                    if (words[index].Equals(existingString))
+                    {
+                        words[index] = replacementString;
+                    }
                 }
+            }
+
+            if (lines.ToString() is not null)
+            {
+                output.Add(lines.ToString()!);
             }
         }
 
-        return lines;
+        return output;
     }
 
-    public static string[] ReplacePartialMatch(string filePath, string existingString, string replacementString)
+    public static IEnumerable<string> ReplacePartialMatch(IEnumerable<string> enumerable, string existingString, string replacementString)
     {
-        string[] lines = File.ReadAllLines(filePath);
+        List<string> output = new();
 
-        foreach (string line in lines)
+        foreach (string str in enumerable)
         {
-            string[] words = line.Split(' ');
-
-            for (int index = 0; index < words.Length; index++)
+            string[] lines = str.Split(Environment.NewLine);
+            
+            foreach (string line in lines)
             {
-                if (words[index].Contains(existingString))
+                string[] words = line.Split(' ');
+
+                for (int index = 0; index < words.Length; index++)
                 {
-                    words[index] = words[index].Replace(existingString, replacementString);
+                    if (words[index].Equals(existingString))
+                    {
+                        words[index] = replacementString;
+                    }
                 }
+            }
+
+            if (lines.ToString() is not null)
+            {
+                output.Add(lines.ToString());
             }
         }
 
-        return lines;
+        return output;
     }
 }

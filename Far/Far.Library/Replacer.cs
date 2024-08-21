@@ -22,8 +22,8 @@ public static class Replacer
     /// 
     /// </summary>
     /// <param name="enumerable"></param>
-    /// <param name="existingChar"></param>
-    /// <param name="replacementChar"></param>
+    /// <param name="existingChar">The char to be replaced.</param>
+    /// <param name="replacementChar">The char to use as a replacement.</param>
     /// <returns></returns>
     public static IEnumerable<string> ReplaceCharacter(IEnumerable<string> enumerable, char existingChar, char replacementChar)
     {

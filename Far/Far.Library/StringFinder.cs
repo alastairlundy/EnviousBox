@@ -18,7 +18,7 @@ using System.Diagnostics.Tracing;
 
 namespace Far.Library;
 
-public class StringMatchFinder
+public class StringFinder
 {
     /// <summary>
     /// 

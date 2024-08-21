@@ -54,12 +54,12 @@ public class StringPositionFinder
     }
     
     /// <summary>
-    /// 
+    /// Gets the positions of a character within a string if the character is found.
     /// </summary>
-    /// <param name="toBeSearched"></param>
-    /// <param name="expected"></param>
-    /// <param name="ignoreCase"></param>
-    /// <returns></returns>
+    /// <param name="toBeSearched">The string to be searched.</param>
+    /// <param name="expected">The character to look for.</param>
+    /// <param name="ignoreCase">Whether to ignore the case of the character being looked for.</param>
+    /// <returns>an IEnumerable of char positions if the char is found within the string; an empty IEnumerable otherwise.</returns>
     public IEnumerable<CharPosition> GetCharPositions(string toBeSearched, char expected, bool ignoreCase)
     {
         List<CharPosition> positions = new List<CharPosition>();
@@ -88,13 +88,13 @@ public class StringPositionFinder
     }
     
     /// <summary>
-    /// 
+    /// Gets the positions of a character within an IEnumerable of strings if the character is found.
     /// </summary>
-    /// <param name="strings"></param>
-    /// <param name="c"></param>
-    /// <param name="ignoreCase"></param>
-    /// <returns></returns>
-    public IEnumerable<CharPosition> GetCharPositions(IEnumerable<string> strings, char c, bool ignoreCase)
+    /// <param name="strings">The IEnumerable of strings to be searched.</param>
+    /// <param name="expected">The character to look for.</param>
+    /// <param name="ignoreCase">Whether to ignore the case of the character being looked for.</param>
+    /// <returns>an IEnumerable of char positions if the char is found within the IEnumerable of strings; an empty IEnumerable otherwise.</returns>
+    public IEnumerable<CharPosition> GetCharPositions(IEnumerable<string> strings, char expected, bool ignoreCase)
     {
         List<CharPosition> charPositions = new();
         charPositions.TrimExcess();
@@ -109,7 +109,7 @@ public class StringPositionFinder
             {
                 for (int i = 0; i < line.Length; i++)
                 {
-                   charPositions = charPositions.Combine(SearchStringForChar(line, c, lineCount, ignoreCase)).ToList();
+                   charPositions = charPositions.Combine(SearchStringForChar(line, expected, lineCount, ignoreCase)).ToList();
                 }
                 
                 lineCount++;
@@ -165,12 +165,12 @@ public class StringPositionFinder
     }
 
     /// <summary>
-    /// 
+    /// Gets the positions of a string within a larger string if the string is found.
     /// </summary>
-    /// <param name="stringToBeSearched"></param>
-    /// <param name="expected"></param>
-    /// <param name="ignoreCase"></param>
-    /// <returns></returns>
+    /// <param name="stringToBeSearched">The string to be searched.</param>
+    /// <param name="expected">The string to look for.</param>
+    /// <param name="ignoreCase">Whether to ignore the case of the string being looked for.</param>
+    /// <returns>an IEnumerable of string positions if the string is found within the specified string; an empty IEnumerable otherwise.</returns>
     public IEnumerable<StringPosition> GetStringPositions(string stringToBeSearched, string expected, bool ignoreCase)
     {
         List<StringPosition> stringPositions = new();
@@ -200,12 +200,12 @@ public class StringPositionFinder
     }
     
     /// <summary>
-    /// 
+    /// Gets the positions of a string within an IEnumerable of strings if the string is found.
     /// </summary>
-    /// <param name="strings"></param>
-    /// <param name="expected"></param>
-    /// <param name="ignoreCase"></param>
-    /// <returns></returns>
+    /// <param name="strings">The IEnumerable of strings to be searched.</param>
+    /// <param name="expected">The string to look for.</param>
+    /// <param name="ignoreCase">Whether to ignore the case of the string being looked for.</param>
+    /// <returns>an IEnumerable of string positions if the string is found within the IEnumerable of strings; an empty IEnumerable otherwise.</returns>
     public IEnumerable<StringPosition> GetStringPositions(IEnumerable<string> strings, string expected, bool ignoreCase)
     {
         List<StringPosition> stringPositions = new();

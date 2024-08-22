@@ -18,7 +18,7 @@ using System.Diagnostics.Tracing;
 
 namespace Far.Library;
 
-public class StringFinder
+public static class StringFinder
 {
     /// <summary>
     /// 
@@ -41,7 +41,7 @@ public class StringFinder
                 }
             }
         }
-
+    
         return false;
     }
 
@@ -127,9 +127,9 @@ public class StringFinder
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="toBeSearched"></param>
-    /// <param name="c"></param>
-    /// <returns></returns>
+    /// <param name="toBeSearched">The string to be searched.</param>
+    /// <param name="c">The char to look for.</param>
+    /// <returns>true if the char is found within the string; false otherwise.</returns>
     public static bool IsAPartialMatch(string toBeSearched, char c)
     {
         return (toBeSearched.ToLower().Equals(c.ToString().ToLower()) ||
@@ -137,11 +137,11 @@ public class StringFinder
     }
     
     /// <summary>
-    /// /
+    /// 
     /// </summary>
-    /// <param name="toBeSearched"></param>
-    /// <param name="s"></param>
-    /// <returns></returns>
+    /// <param name="toBeSearched">The string to be searched.</param>
+    /// <param name="s">The string to look for.</param>
+    /// <returns>true if the string is found within the string to be searched; false otherwise.</returns>
     public static bool IsAPartialMatch(string toBeSearched, string s)
     {
         return (toBeSearched.ToLower().Equals(s.ToLower()) || toBeSearched.ToLower().Contains(s.ToLower()));

@@ -103,7 +103,7 @@ public static class StringFinder
     /// 
     /// </summary>
     /// <param name="contentsToBeSearched"></param>
-    /// <param name="c"></param>
+    /// <param name="c">The char to look for.</param>
     /// <returns></returns>
     public static bool ContainsPartialMatch(IEnumerable<string> contentsToBeSearched, char c)
     {
@@ -125,7 +125,7 @@ public static class StringFinder
     }
 
     /// <summary>
-    /// 
+    /// Determines whether a char is or contains a partial match to another string.
     /// </summary>
     /// <param name="toBeSearched">The string to be searched.</param>
     /// <param name="c">The char to look for.</param>
@@ -137,11 +137,11 @@ public static class StringFinder
     }
     
     /// <summary>
-    /// 
+    /// Determines whether a string is or contains a partial match to another string.
     /// </summary>
     /// <param name="toBeSearched">The string to be searched.</param>
     /// <param name="s">The string to look for.</param>
-    /// <returns>true if the string is found within the string to be searched; false otherwise.</returns>
+    /// <returns>true if a partial match to a string is found within the string to be searched; false otherwise.</returns>
     public static bool IsAPartialMatch(string toBeSearched, string s)
     {
         return (toBeSearched.ToLower().Equals(s.ToLower()) || toBeSearched.ToLower().Contains(s.ToLower()));

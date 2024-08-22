@@ -4,6 +4,15 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>Far.Library</Title>
+        <Authors>AlastairLundy</Authors>
+        <Copyright>Copyright (c) Alastair Lundy 2024 </Copyright>
+        <RepositoryUrl>https://github.com/alastairlundy/EnviousBox/</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Description>Find (and optionally Replace) characters or strings within strings.</Description>
     </PropertyGroup>
 
     <ItemGroup>
@@ -12,7 +21,7 @@
 
     <ItemGroup>
       <PackageReference Include="AlastairLundy.Extensions.Collections" Version="5.*" />
-      <PackageReference Include="AlastairLundy.Extensions.System" Version="5.0.1" />
+      <PackageReference Include="AlastairLundy.Extensions.System" Version="5.*" />
     </ItemGroup>
 
 </Project>

@@ -149,7 +149,7 @@ public class StringPositionFinder
                     {
                         endPosition = new CharPosition(lineNumber, i - 1);
 
-                        positions.Add(new StringPosition()
+                        positions.Add(new StringPosition
                         {
                             EndPosition = endPosition,
                             StartPosition = startPosition

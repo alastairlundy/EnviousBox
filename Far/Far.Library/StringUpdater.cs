@@ -15,6 +15,7 @@
  */
 
 using System.Text;
+
 using AlastairLundy.Extensions.System;
 
 namespace Far.Library;

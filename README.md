@@ -1,10 +1,11 @@
 # EnviousBox
-A group of my CLI tools/programs that aim to help users.
+A group of my tools/programs that aim to help users.
 
 ## Programs
 These are the current and upcoming programs in Envious Box.
 
-### Stable Programs
+### CLI Programs
+#### Stable Programs
 | Project name | Assembly Name | Description | Written  In |
 |-|-|-|-|
 | Pow | pow | Calculates square root, cube root, and any value to a positive or negative power. | C# |
@@ -12,11 +13,11 @@ These are the current and upcoming programs in Envious Box.
 | Average | average | Calculate averages easily (Supports mode, median, arithmetic mean, and geometric mean). | C# |
 | Caesar | caesar | Encode or Decode text or a file using the Caesar Cipher, either using a number provided or a random number. Don't use this for sensitive or secret information. | C# |
 
-### Programs being developed
+#### Programs being developed
 | Program name | Description | Written  In |
 |-|-|-|
 | where | Find all files and folders containing the specified string. | C# |
 | far | Find and Replace any string of text in any file. | C# |
 
-### Licensing
+## Licensing
 All programs in Envious Box are licensed under Apache 2.0 License.

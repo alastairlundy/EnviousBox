@@ -19,10 +19,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
+using AlastairLundy.Extensions.Collections.IEnumerables;
 using AlastairLundy.Extensions.Maths.Averages;
 
 using Average.Helpers;
-using Average.Library;
 
 using Average.Localizations;
 
@@ -52,7 +52,7 @@ public class ModeCommand : Command<ModeCommand.Settings>
         {
             try
             {
-                File.WriteAllLines(settings.FileOutput!, DecimalHelper.ConvertDecimalsToStrings(modes.ToArray()));
+                File.WriteAllLines(settings.FileOutput!, modes.ToArray().ToStringEnumerable());
                 AnsiConsole.WriteLine($"{Resources.File_Save_Success} {settings.FileOutput}");
 
                 return 0;

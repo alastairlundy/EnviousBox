@@ -15,6 +15,8 @@
  */
 
 
+using System;
+
 namespace Far.Library.Models;
 
 public class SearchResultItem : IEquatable<SearchResultItem>

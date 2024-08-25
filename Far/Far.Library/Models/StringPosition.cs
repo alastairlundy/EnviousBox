@@ -14,6 +14,8 @@
    limitations under the License.
  */
 
+using System;
+
 namespace Far.Library.Models;
 
 public class StringPosition : IEquatable<StringPosition>

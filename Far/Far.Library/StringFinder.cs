@@ -14,44 +14,22 @@
    limitations under the License.
  */
 
-using System.Diagnostics.Tracing;
+using System.Collections.Generic;
+
+using Far.Library.Abstractions;
+using Far.Library.Extensions;
 
 namespace Far.Library;
 
-public static class StringFinder
+public class StringFinder : IStringFinder
 {
     /// <summary>
     /// 
     /// </summary>
     /// <param name="contentsToBeSearched"></param>
-    /// <param name="c"></param>
+    /// <param name="s">The string to search for.</param>
     /// <returns></returns>
-    public static bool ContainsExactMatch(IEnumerable<string> contentsToBeSearched, char c)
-    {
-        foreach (string contentLine in contentsToBeSearched)
-        {
-            foreach (string word in contentLine.Split(' '))
-            {
-                foreach (char character in word)
-                {
-                    if (character.Equals(c))
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-    
-        return false;
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="contentsToBeSearched"></param>
-    /// <param name="s"></param>
-    /// <returns></returns>
-    public static bool ContainsExactMatch(IEnumerable<string> contentsToBeSearched, string s)
+    public bool ContainsExactMatch(IEnumerable<string> contentsToBeSearched, string s)
     {
         foreach (string contentLine in contentsToBeSearched)
         {
@@ -76,20 +54,20 @@ public static class StringFinder
     /// 
     /// </summary>
     /// <param name="contentsToBeSearched"></param>
-    /// <param name="s"></param>
+    /// <param name="s">The string to search for.</param>
     /// <returns></returns>
-    public static bool ContainsPartialMatch(IEnumerable<string> contentsToBeSearched, string s)
+    public bool ContainsPartialMatch(IEnumerable<string> contentsToBeSearched, string s)
     {
         foreach (string contentLine in contentsToBeSearched)
         {
-            if (IsAPartialMatch(contentLine, s))
+            if (contentLine.IsAPartialMatch(s))
             {
                 return true;
             }
 
             foreach (string word in contentLine.Split(' '))
             {
-                if (IsAPartialMatch(word, s))
+                if (word.IsAPartialMatch(s))
                 {
                     return true;
                 } 
@@ -103,9 +81,9 @@ public static class StringFinder
     /// 
     /// </summary>
     /// <param name="contentsToBeSearched"></param>
-    /// <param name="c">The char to look for.</param>
-    /// <returns></returns>
-    public static bool ContainsPartialMatch(IEnumerable<string> contentsToBeSearched, char c)
+    /// <param name="c">The char to search for.</param>
+    /// <returns>true if a partial match</returns>
+    public bool ContainsPartialMatch(IEnumerable<string> contentsToBeSearched, char c)
     {
         foreach (string contentLine in contentsToBeSearched)
         {
@@ -113,7 +91,7 @@ public static class StringFinder
             {
                 foreach (char character in word)
                 {
-                    if (IsAPartialMatch(word, c) || character.Equals(c))
+                    if (character.Equals(c))
                     {
                         return true;
                     }
@@ -125,35 +103,12 @@ public static class StringFinder
     }
 
     /// <summary>
-    /// Determines whether a char is or contains a partial match to another string.
-    /// </summary>
-    /// <param name="toBeSearched">The string to be searched.</param>
-    /// <param name="c">The char to look for.</param>
-    /// <returns>true if the char is found within the string; false otherwise.</returns>
-    public static bool IsAPartialMatch(string toBeSearched, char c)
-    {
-        return (toBeSearched.ToLower().Equals(c.ToString().ToLower()) ||
-                toBeSearched.ToLower().Contains(c.ToString().ToLower()));
-    }
-    
-    /// <summary>
-    /// Determines whether a string is or contains a partial match to another string.
-    /// </summary>
-    /// <param name="toBeSearched">The string to be searched.</param>
-    /// <param name="s">The string to look for.</param>
-    /// <returns>true if a partial match to a string is found within the string to be searched; false otherwise.</returns>
-    public static bool IsAPartialMatch(string toBeSearched, string s)
-    {
-        return (toBeSearched.ToLower().Equals(s.ToLower()) || toBeSearched.ToLower().Contains(s.ToLower()));
-    }
-
-    /// <summary>
     /// 
     /// </summary>
     /// <param name="contentsToBeSearched"></param>
     /// <param name="s"></param>
     /// <returns></returns>
-    public static (IEnumerable<string> exactMatches, IEnumerable<string> partialMatches) Find(IEnumerable<string> contentsToBeSearched, string s)
+    public (IEnumerable<string> exactMatches, IEnumerable<string> partialMatches) Find(IEnumerable<string> contentsToBeSearched, string s)
     {
         List<string> exactMatches = new List<string>();
         List<string> partialMatches = new List<string>();
@@ -164,7 +119,7 @@ public static class StringFinder
             {
                 foreach (string word in str.Split(' '))
                 {
-                    if (IsAPartialMatch(word, s) && !word.Equals(s))
+                    if (word.IsAPartialMatch(s) && !word.Equals(s))
                     {
                         partialMatches.Add(word);
                     }
@@ -175,7 +130,7 @@ public static class StringFinder
                 }
             }
 
-            if (IsAPartialMatch(str, s) && !str.Equals(s))
+            if (str.IsAPartialMatch(s) && !str.Equals(s))
             {
                 partialMatches.Add(str);
             }
@@ -196,7 +151,7 @@ public static class StringFinder
     /// <param name="exactMatches"></param>
     /// <param name="partialMatches"></param>
     /// <returns></returns>
-    public static bool TryFind(IEnumerable<string> contentsToBeSearched, string s, out IEnumerable<string> exactMatches, out IEnumerable<string> partialMatches)
+    public bool TryFind(IEnumerable<string> contentsToBeSearched, string s, out IEnumerable<string> exactMatches, out IEnumerable<string> partialMatches)
     {
         List<string> foundExactMatches = new List<string>();
         List<string> foundPartialMatches = new List<string>();
@@ -207,7 +162,7 @@ public static class StringFinder
             {
                 foreach (string word in str.Split(' '))
                 {
-                    if (IsAPartialMatch(word, s) && !word.Equals(s))
+                    if (word.IsAPartialMatch(s) && !word.Equals(s))
                     {
                         foundPartialMatches.Add(word);
                     }
@@ -218,7 +173,7 @@ public static class StringFinder
                 }
             }
 
-            if (IsAPartialMatch(str, s) && !str.Equals(s))
+            if (str.IsAPartialMatch(s) && !str.Equals(s))
             {
                 foundPartialMatches.Add(str);
             }

@@ -14,13 +14,17 @@
    limitations under the License.
  */
 
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 using AlastairLundy.Extensions.System;
 
+using Far.Library.Abstractions;
+
 namespace Far.Library;
 
-public static class StringUpdater
+public class StringReplacer : IStringReplacer
 {
     /// <summary>
     /// Replaces exact matches of a specified char within a string with a specified replacement char.
@@ -29,7 +33,7 @@ public static class StringUpdater
     /// <param name="toBeReplaced">The char to be replaced.</param>
     /// <param name="replacementChar">The char to be used as the replacement.</param>
     /// <returns>the modified string if the string contained the char to be replaced; the original string otherwise.</returns>
-    public static string ReplaceCharacter(string original, char toBeReplaced, char replacementChar)
+    public string ReplaceCharacter(string original, char toBeReplaced, char replacementChar)
     {
         StringBuilder builder = new StringBuilder();
         
@@ -55,7 +59,7 @@ public static class StringUpdater
     /// <param name="toBeReplaced">The char to be replaced.</param>
     /// <param name="replacementChar">The char to be used as the replacement.</param>
     /// <returns>the modified IEnumerable of strings if the char to be replaced was found; the unmodified original IEnumerable otherwise.</returns>
-    public static IEnumerable<string> ReplaceCharacter(IEnumerable<string> enumerable, char toBeReplaced, char replacementChar)
+    public IEnumerable<string> ReplaceCharacter(IEnumerable<string> enumerable, char toBeReplaced, char replacementChar)
     {
         List<string> output = new();
         output.TrimExcess();
@@ -84,7 +88,7 @@ public static class StringUpdater
     /// <param name="toBeReplaced">The string to be replaced.</param>
     /// <param name="replacementString">The replacement string.</param>
     /// <returns>the modified string if the string contained the string to be replaced; the original string otherwise.</returns>
-    public static string ReplaceExactMatch(string original, string toBeReplaced, string replacementString)
+    public string ReplaceExactMatch(string original, string toBeReplaced, string replacementString)
     {
         string output = original;
         
@@ -103,7 +107,7 @@ public static class StringUpdater
     /// <param name="toBeReplaced">The string to be replaced.</param>
     /// <param name="replacementString">The replacement string.</param>
     /// <returns>the modified IEnumerable of strings if the string to be replaced was found; the unmodified original IEnumerable otherwise.</returns>
-    public static IEnumerable<string> ReplaceExactMatch(IEnumerable<string> enumerable, string toBeReplaced, string replacementString)
+    public IEnumerable<string> ReplaceExactMatch(IEnumerable<string> enumerable, string toBeReplaced, string replacementString)
     {
         List<string> output = new();
         
@@ -129,7 +133,7 @@ public static class StringUpdater
     /// <param name="toBeReplaced">The string to be replaced.</param>
     /// <param name="replacementString">The replacement string.</param>
     /// <returns>the modified IEnumerable of strings if the string to be replaced was found; the unmodified original IEnumerable otherwise.</returns>
-    public static string ReplacePartialMatch(string original, string toBeReplaced, string replacementString)
+    public string ReplacePartialMatch(string original, string toBeReplaced, string replacementString)
     {
         string output = original;
 
@@ -165,7 +169,7 @@ public static class StringUpdater
     /// <param name="toBeReplaced">The string to be replaced.</param>
     /// <param name="replacementString">The replacement string.</param>
     /// <returns>the modified IEnumerable of strings if the string to be replaced was found; the unmodified original IEnumerable otherwise.</returns>
-    public static IEnumerable<string> ReplacePartialMatch(IEnumerable<string> enumerable, string toBeReplaced, string replacementString)
+    public IEnumerable<string> ReplacePartialMatch(IEnumerable<string> enumerable, string toBeReplaced, string replacementString)
     {
         List<string> output = new();
 

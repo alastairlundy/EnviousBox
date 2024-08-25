@@ -12,10 +12,15 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
- */ 
+ */
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 using AlastairLundy.Extensions.Collections.IEnumerables;
 
+using Far.Library.Abstractions;
 using Far.Library.Models;
 
 namespace Far.Library;
@@ -23,7 +28,7 @@ namespace Far.Library;
 /// <summary>
 /// 
 /// </summary>
-public class StringPositionFinder
+public class StringPositionFinder : IStringPositionFinder
 {
     protected IEnumerable<CharPosition> SearchStringForChar(string input, char expected, int lineNumber, bool ignoreCase)
     {

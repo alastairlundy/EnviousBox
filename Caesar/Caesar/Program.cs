@@ -15,7 +15,9 @@
  */
 
 using System.Reflection;
+
 using AlastairLundy.Extensions.System;
+
 using Caesar.Commands;
 using Caesar.localizations;
 

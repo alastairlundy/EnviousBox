@@ -17,7 +17,9 @@
 using System;
 using System.ComponentModel;
 using System.IO;
+
 using Caesar.Library;
+
 using Spectre.Console;
 using Spectre.Console.Cli;
 

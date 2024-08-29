@@ -28,17 +28,14 @@ public interface IStringFinder
     
     public bool ContainsExactMatch(IEnumerable<string> contentsToBeSearched, string s);
 
+    public SearchResult FindStrings(string contentsToBeSearched, string s);
+    
     public SearchResult FindStrings(IEnumerable<string> contentsToBeSearched, string s);
-    public Task<SearchResult> FindStringsAsync(IEnumerable<string> contentsToBeSearched, string s);
-
     public SearchResult FindStringsInFile(string filePath, string s);
     public Task<SearchResult> FindStringsInFileAsync(string filePath, string s);
     
     
-    public bool TryFindStrings(IEnumerable<string> contentsToBeSearched, string s, out SearchResult result);
-    public Task<bool> TryFindStringsAsync(IEnumerable<string> contentsToBeSearched, string s, out SearchResult result);
-    
-    public bool TryFindInFile(string filePath, string s, out SearchResult result);
-    public Task<bool> TryFindInFileAsync(string filePath, string s, out SearchResult result);
-
+    public bool TryFindStrings(string contentsToBeSearched, string s, out SearchResult? result);
+    public bool TryFindStrings(IEnumerable<string> contentsToBeSearched, string s, out SearchResult? result);
+    public bool TryFindInFile(string filePath, string s, out SearchResult? result);
 }

@@ -14,6 +14,7 @@
    limitations under the License.
  */
 
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,11 +22,100 @@ using System.Text;
 using AlastairLundy.Extensions.System;
 
 using Far.Library.Abstractions;
+using Far.Library.Models;
 
 namespace Far.Library;
 
 public class StringReplacer : IStringReplacer
 {
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="original"></param>
+    /// <param name="itemPosition"></param>
+    /// <param name="replacement"></param>
+    /// <returns></returns>
+    public string Replace(string original, StringPosition itemPosition, string replacement)
+    {
+        if (original.Split(Environment.NewLine).Length > 0)
+        {
+            string[] lines = original.Split(Environment.NewLine);
+
+            for (int lineNumber = 0; lineNumber < lines.Length; lineNumber++)
+            {
+                if (lineNumber == itemPosition.StartPosition.LineNumber)
+                {
+                    original = original.Remove(itemPosition.StartPosition.ColumnNumber, 
+                        Math.Abs(itemPosition.EndPosition.ColumnNumber - itemPosition.StartPosition.ColumnNumber));
+                    original = original.Insert(itemPosition.StartPosition.ColumnNumber, replacement);
+                }
+            }
+        }
+        else
+        {
+            original = original.Remove(itemPosition.StartPosition.ColumnNumber, 
+                Math.Abs(itemPosition.EndPosition.ColumnNumber - itemPosition.StartPosition.ColumnNumber));
+            original = original.Insert(itemPosition.StartPosition.ColumnNumber, replacement);
+        }
+        
+        return original;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="original"></param>
+    /// <param name="itemToBeReplaced"></param>
+    /// <param name="replacement"></param>
+    /// <returns>the modified string.</returns>
+    public string Replace(string original, SearchResultItem itemToBeReplaced, string replacement)
+    {
+        foreach (StringPosition position in itemToBeReplaced.ResultPositions)
+        {
+            if (original.Split(Environment.NewLine).Length > 0)
+            {
+                string[] lines = original.Split(Environment.NewLine);
+
+                foreach (string line in lines)
+                {
+                    if (line.Contains(itemToBeReplaced.ResultValue))
+                    {
+                        original = original.Remove(position.StartPosition.ColumnNumber, 
+                            Math.Abs(position.EndPosition.ColumnNumber - position.StartPosition.ColumnNumber));
+                        original = original.Insert(position.StartPosition.ColumnNumber, replacement);
+                    }
+                }
+            }
+            else
+            {
+                original = original.Remove(position.StartPosition.ColumnNumber, 
+                    Math.Abs(position.EndPosition.ColumnNumber - position.StartPosition.ColumnNumber));
+                original = original.Insert(position.StartPosition.ColumnNumber, replacement);
+            }
+        }
+
+        return original;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="enumerable">The enumerable to be searched and modified.</param>
+    /// <param name="itemToBeReplaced">The search result item to be replaced.</param>
+    /// <param name="replacement">The replacement string</param>
+    /// <returns></returns>
+    public IEnumerable<string> Replace(IEnumerable<string> enumerable, SearchResultItem itemToBeReplaced, string replacement)
+    {
+        string[] output = enumerable.ToArray();
+
+        for(int index = 0; index < output.Length; index++)
+        {
+            output[index] = Replace(output[index], itemToBeReplaced, replacement);
+        }
+        
+        return output;
+    }
+
     /// <summary>
     /// Replaces exact matches of a specified char within a string with a specified replacement char.
     /// </summary>

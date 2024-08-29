@@ -14,18 +14,31 @@
    limitations under the License.
  */
 
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
+
+using AlastairLundy.Extensions.Collections.IEnumerables;
 
 using Far.Library.Abstractions;
 using Far.Library.Extensions;
 using Far.Library.Models;
 
+using AlastairLundy.Extensions.System;
+
 namespace Far.Library;
 
 public class StringFinder : IStringFinder
 {
+    protected StringPositionFinder stringPositionFinder;
+
+    public StringFinder()
+    {
+        stringPositionFinder = new StringPositionFinder();
+    }
+    
     /// <summary>
     /// 
     /// </summary>
@@ -53,44 +66,175 @@ public class StringFinder : IStringFinder
         return false;
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="contentsToBeSearched"></param>
+    /// <param name="s"></param>
+    /// <returns></returns>
+    public SearchResult FindStrings(string contentsToBeSearched, string s)
+    {
+        List<SearchResultItem> exactMatches = new List<SearchResultItem>();
+        List<SearchResultItem> partialMatches = new List<SearchResultItem>();
+            
+        if (contentsToBeSearched.ContainsSpaceSeparatedSubStrings() == true)
+        {
+            string[] spaceSeparatedStrings = contentsToBeSearched.Split(' ');
+
+            foreach (string str in spaceSeparatedStrings)
+            {
+                if (ContainsExactMatch(new string[] { str }, s) == true)
+                {
+                    exactMatches.Add(new SearchResultItem
+                    {
+                        ResultValue = str,
+                        ResultPositions = stringPositionFinder.GetStringPositions(str, s, false).ToList(),
+                    });
+                }
+                else if (ContainsPartialMatch(new string[] { str }, s) == true)
+                {
+                    partialMatches.Add(new SearchResultItem
+                    {
+                        ResultValue = str,
+                        ResultPositions = stringPositionFinder.GetStringPositions(str, s, false).ToList()
+                    });
+                }
+            }
+        }
+        else
+        {
+            if (ContainsExactMatch(new string[] { contentsToBeSearched }, s))
+            {
+                exactMatches.Add(new SearchResultItem
+                {
+                    ResultValue = contentsToBeSearched,
+                    ResultPositions = stringPositionFinder.GetStringPositions(contentsToBeSearched, s, false).ToList()
+                });
+            }
+            else if (ContainsPartialMatch(new string[] { contentsToBeSearched }, s))
+            {
+                partialMatches.Add(new SearchResultItem
+                {
+                    ResultValue = contentsToBeSearched,
+                    ResultPositions = stringPositionFinder.GetStringPositions(contentsToBeSearched, s, true).ToList()
+                });
+            }
+        }
+        
+        SearchResult output = new SearchResult(exactMatches, partialMatches);
+        return output;
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="contentsToBeSearched"></param>
+    /// <param name="s"></param>
+    /// <returns></returns>
     public SearchResult FindStrings(IEnumerable<string> contentsToBeSearched, string s)
     {
-        throw new System.NotImplementedException();
+        List<SearchResultItem> exactMatches = new List<SearchResultItem>();
+        List<SearchResultItem> partialMatches = new List<SearchResultItem>();
+
+        foreach (string content in contentsToBeSearched)
+        {
+            SearchResult result = FindStrings(content, s);
+
+           exactMatches = exactMatches.Combine(result.ExactMatches.ToList()).ToList();
+           partialMatches = partialMatches.Combine(result.PartialMatches.ToList()).ToList();
+        }
+        
+        SearchResult output = new SearchResult(exactMatches, partialMatches);
+        return output;
     }
 
-    public Task<SearchResult> FindStringsAsync(IEnumerable<string> contentsToBeSearched, string s)
-    {
-        throw new System.NotImplementedException();
-    }
-    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="filePath"></param>
+    /// <param name="s">The string to search for.</param>
+    /// <returns></returns>
     public SearchResult FindStringsInFile(string filePath, string s)
     {
-        throw new System.NotImplementedException();
+        string[] fileContents = File.ReadAllLines(filePath);
+        
+        return FindStrings(fileContents, s);
     }
 
-    public Task<SearchResult> FindStringsInFileAsync(string filePath, string s)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="filePath">The file path of the file to search.</param>
+    /// <param name="s">The string to search for.</param>
+    /// <returns></returns>
+    public async Task<SearchResult> FindStringsInFileAsync(string filePath, string s)
     {
-        throw new System.NotImplementedException();
+        string[] lines = await File.ReadAllLinesAsync(filePath);
+
+        return FindStrings(lines, s);
     }
 
-    public bool TryFindStrings(IEnumerable<string> contentsToBeSearched, string s, out SearchResult result)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="contentsToBeSearched"></param>
+    /// <param name="s"></param>
+    /// <param name="result"></param>
+    /// <returns></returns>
+    public bool TryFindStrings(string contentsToBeSearched, string s, out SearchResult? result)
     {
-        throw new System.NotImplementedException();
-    }
-    
-    public Task<bool> TryFindStringsAsync(IEnumerable<string> contentsToBeSearched, string s, out SearchResult result)
-    {
-        throw new System.NotImplementedException();
+        try
+        {
+            result = FindStrings(contentsToBeSearched, s);
+            return true;
+        }
+        catch
+        {
+            result = null;
+            return false;
+        }
     }
 
-    public bool TryFindInFile(string filePath, string s, out SearchResult result)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="contentsToBeSearched"></param>
+    /// <param name="s"></param>
+    /// <param name="result"></param>
+    /// <returns></returns>
+    public bool TryFindStrings(IEnumerable<string> contentsToBeSearched, string s, out SearchResult? result)
     {
-        throw new System.NotImplementedException();
+        try
+        {
+            result = FindStrings(contentsToBeSearched, s);
+            return true;
+        }
+        catch
+        {
+            result = null;
+            return false;
+        }
     }
 
-    public Task<bool> TryFindInFileAsync(string filePath, string s, out SearchResult result)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="filePath"></param>
+    /// <param name="s"></param>
+    /// <param name="result"></param>
+    /// <returns></returns>
+    public bool TryFindInFile(string filePath, string s, out SearchResult? result)
     {
-        throw new System.NotImplementedException();
+        try
+        {
+            result = FindStringsInFile(filePath, s);
+            return true;
+        }
+        catch
+        {
+            result = null;
+            return false;
+        }
     }
 
     /// <summary>

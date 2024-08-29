@@ -16,6 +16,7 @@
 
 
 using System;
+using System.Collections.Generic;
 
 namespace Far.Library.Models;
 
@@ -23,17 +24,17 @@ public class SearchResultItem : IEquatable<SearchResultItem>
 {
     public SearchResultItem()
     {
-        ResultPosition = new StringPosition();
+        ResultPositions = new List<StringPosition>();
         ResultValue = string.Empty;
     }
 
-    public SearchResultItem(StringPosition resultPosition, string resultValue)
+    public SearchResultItem(List<StringPosition> resultPositions, string resultValue)
     {
-        this.ResultPosition = resultPosition;
+        this.ResultPositions = resultPositions;
         this.ResultValue = resultValue;
     }
     
-    public StringPosition ResultPosition { get; set; }
+    public List<StringPosition> ResultPositions { get; set; }
     
     public string ResultValue { get; set;  }
 
@@ -50,7 +51,7 @@ public class SearchResultItem : IEquatable<SearchResultItem>
         }
         else
         {
-            return ResultPosition.Equals(other.ResultPosition) && ResultValue.Equals(other.ResultValue);
+            return ResultPositions.Equals(other.ResultPositions) && ResultValue.Equals(other.ResultValue);
         }
     }
 
@@ -82,6 +83,6 @@ public class SearchResultItem : IEquatable<SearchResultItem>
     /// <returns></returns>
     public override int GetHashCode()
     {
-        return HashCode.Combine(ResultPosition, ResultValue);
+        return HashCode.Combine(ResultPositions, ResultValue);
     }
 }

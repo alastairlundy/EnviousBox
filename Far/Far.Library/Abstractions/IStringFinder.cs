@@ -14,21 +14,31 @@
    limitations under the License.
  */
 
+using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+
+using Far.Library.Models;
 
 namespace Far.Library.Abstractions;
 
 public interface IStringFinder
 {
-    public bool ContainsPartialMatch(IEnumerable<string> contentsToBeSearched, char c);
     public bool ContainsPartialMatch(IEnumerable<string> contentsToBeSearched, string s);
     
     public bool ContainsExactMatch(IEnumerable<string> contentsToBeSearched, string s);
 
-    public (IEnumerable<string> exactMatches, IEnumerable<string> partialMatches) Find(
-        IEnumerable<string> contentsToBeSearched, string s);
+    public SearchResult FindStrings(IEnumerable<string> contentsToBeSearched, string s);
+    public Task<SearchResult> FindStringsAsync(IEnumerable<string> contentsToBeSearched, string s);
 
-    public bool TryFind(IEnumerable<string> contentsToBeSearched, string s,
-        out IEnumerable<string> exactMatches, out IEnumerable<string> partialMatches);
+    public SearchResult FindStringsInFile(string filePath, string s);
+    public Task<SearchResult> FindStringsInFileAsync(string filePath, string s);
+    
+    
+    public bool TryFindStrings(IEnumerable<string> contentsToBeSearched, string s, out SearchResult result);
+    public Task<bool> TryFindStringsAsync(IEnumerable<string> contentsToBeSearched, string s, out SearchResult result);
+    
+    public bool TryFindInFile(string filePath, string s, out SearchResult result);
+    public Task<bool> TryFindInFileAsync(string filePath, string s, out SearchResult result);
 
 }

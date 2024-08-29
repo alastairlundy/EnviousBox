@@ -157,7 +157,7 @@ public class StringPositionFinder : IStringPositionFinder
                         positions.Add(new StringPosition
                         {
                             EndPosition = endPosition,
-                            StartPosition = startPosition
+                            StartPosition = startPosition,
                         });
 
                         break;

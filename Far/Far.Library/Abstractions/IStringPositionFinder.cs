@@ -12,5 +12,5 @@ public interface IStringPositionFinder
     public IEnumerable<StringPosition> GetStringPositions(string stringToBeSearched, string expected, bool ignoreCase);
 
     public IEnumerable<StringPosition> GetStringPositions(IEnumerable<string> strings, string expected, bool ignoreCase);
-
+    
 }

@@ -22,7 +22,7 @@ using Far.Library.Models;
 
 namespace Far.Library.Abstractions;
 
-public interface IStringFinder
+public interface IStringSearcher
 {
     public bool ContainsPartialMatch(IEnumerable<string> contentsToBeSearched, string s);
     
@@ -38,4 +38,5 @@ public interface IStringFinder
     public bool TryFindStrings(string contentsToBeSearched, string s, out SearchResult? result);
     public bool TryFindStrings(IEnumerable<string> contentsToBeSearched, string s, out SearchResult? result);
     public bool TryFindInFile(string filePath, string s, out SearchResult? result);
+
 }

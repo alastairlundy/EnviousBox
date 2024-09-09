@@ -30,21 +30,26 @@ using AlastairLundy.Extensions.System;
 
 namespace Far.Library;
 
-public class StringFinder : IStringFinder
+public class StringSearcher : IStringSearcher
 {
-    protected StringPositionFinder stringPositionFinder;
+    protected IStringPositionFinder stringPositionFinder;
 
-    public StringFinder()
+    public StringSearcher()
     {
         stringPositionFinder = new StringPositionFinder();
     }
     
+    public StringSearcher(IStringPositionFinder stringPositionFinder)
+    {
+        this.stringPositionFinder = stringPositionFinder; 
+    }
+    
     /// <summary>
-    /// 
+    /// Returns whether an IEnumerable of strings contains an exact match of a specified string.
     /// </summary>
-    /// <param name="contentsToBeSearched"></param>
+    /// <param name="contentsToBeSearched">The IEnumerable to be searched.</param>
     /// <param name="s">The string to search for.</param>
-    /// <returns></returns>
+    /// <returns>True if a case-sensitive exact match is found; False otherwise.</returns>
     public bool ContainsExactMatch(IEnumerable<string> contentsToBeSearched, string s)
     {
         foreach (string contentLine in contentsToBeSearched)
@@ -67,11 +72,11 @@ public class StringFinder : IStringFinder
     }
 
     /// <summary>
-    /// 
+    /// Searches a string for a specified string and returns the results of the search with any partial and exact matches.
     /// </summary>
-    /// <param name="contentsToBeSearched"></param>
-    /// <param name="s"></param>
-    /// <returns></returns>
+    /// <param name="contentsToBeSearched">The string to be searched.</param>
+    /// <param name="s">The specified string to search for.</param>
+    /// <returns>The result of the search including any Exact and Partial matches if found.</returns>
     public SearchResult FindStrings(string contentsToBeSearched, string s)
     {
         List<SearchResultItem> exactMatches = new List<SearchResultItem>();
@@ -126,11 +131,11 @@ public class StringFinder : IStringFinder
     }
 
     /// <summary>
-    /// 
+    /// Searches an IEnumerable of strings for a specified string and returns the results of the search with any partial and exact matches.
     /// </summary>
-    /// <param name="contentsToBeSearched"></param>
-    /// <param name="s"></param>
-    /// <returns></returns>
+    /// <param name="contentsToBeSearched">The IEnumerable to be searched.</param>
+    /// <param name="s">The specified string to search for.</param>
+    /// <returns>The result of the search including any Exact and Partial matches if found.</returns>
     public SearchResult FindStrings(IEnumerable<string> contentsToBeSearched, string s)
     {
         List<SearchResultItem> exactMatches = new List<SearchResultItem>();
@@ -149,11 +154,11 @@ public class StringFinder : IStringFinder
     }
 
     /// <summary>
-    /// 
+    /// Searches a file for a specified string and returns the results of the search with any partial and exact matches.
     /// </summary>
-    /// <param name="filePath"></param>
+    /// <param name="filePath">The file path of the file to be searched.</param>
     /// <param name="s">The string to search for.</param>
-    /// <returns></returns>
+    /// <returns>The result of the search including any Exact and Partial matches if found.</returns>
     public SearchResult FindStringsInFile(string filePath, string s)
     {
         string[] fileContents = File.ReadAllLines(filePath);
@@ -162,11 +167,11 @@ public class StringFinder : IStringFinder
     }
 
     /// <summary>
-    /// 
+    /// Asynchronously reads a file, and synchronously searches the file contents for a specified string and returns the results of the search with any partial and exact matches.
     /// </summary>
     /// <param name="filePath">The file path of the file to search.</param>
     /// <param name="s">The string to search for.</param>
-    /// <returns></returns>
+    /// <returns>The result of the search including any Exact and Partial matches if found.</returns>
     public async Task<SearchResult> FindStringsInFileAsync(string filePath, string s)
     {
         string[] lines = await File.ReadAllLinesAsync(filePath);
@@ -175,12 +180,12 @@ public class StringFinder : IStringFinder
     }
 
     /// <summary>
-    /// 
+    /// Attempts to search for a specified string within a string.
     /// </summary>
-    /// <param name="contentsToBeSearched"></param>
-    /// <param name="s"></param>
-    /// <param name="result"></param>
-    /// <returns></returns>
+    /// <param name="contentsToBeSearched">The string to be searched.</param>
+    /// <param name="s">The string to search for.</param>
+    /// <param name="result">The search results if the attempted search was completed; Null otherwise</param>
+    /// <returns>>True if the attempted search was completed; False otherwise.</returns>
     public bool TryFindStrings(string contentsToBeSearched, string s, out SearchResult? result)
     {
         try
@@ -196,12 +201,12 @@ public class StringFinder : IStringFinder
     }
 
     /// <summary>
-    /// 
+    /// Attempts to search for a specified string within an IEnumerable of strings.
     /// </summary>
-    /// <param name="contentsToBeSearched"></param>
-    /// <param name="s"></param>
-    /// <param name="result"></param>
-    /// <returns></returns>
+    /// <param name="contentsToBeSearched">The IEnumerable to be searched.</param>
+    /// <param name="s">The string to search for.</param>
+    /// <param name="result">The search results if the attempted search was completed; Null otherwise</param>
+    /// <returns>>True if the attempted search was completed; False otherwise.</returns>
     public bool TryFindStrings(IEnumerable<string> contentsToBeSearched, string s, out SearchResult? result)
     {
         try
@@ -217,12 +222,12 @@ public class StringFinder : IStringFinder
     }
 
     /// <summary>
-    /// 
+    /// Attempts to search for a specified string within a file.
     /// </summary>
-    /// <param name="filePath"></param>
-    /// <param name="s"></param>
-    /// <param name="result"></param>
-    /// <returns></returns>
+    /// <param name="filePath">The file to be searched.</param>
+    /// <param name="s">The string to search for.</param>
+    /// <param name="result">The search results if the attempted search was completed; Null otherwise</param>
+    /// <returns>>True if the attempted search was completed; False otherwise.</returns>
     public bool TryFindInFile(string filePath, string s, out SearchResult? result)
     {
         try
@@ -238,11 +243,11 @@ public class StringFinder : IStringFinder
     }
 
     /// <summary>
-    /// 
+    /// Determines whether a partial match to a string is found within an IEnumerable of string.
     /// </summary>
-    /// <param name="contentsToBeSearched"></param>
+    /// <param name="contentsToBeSearched">The IEnumerable to be searched.</param>
     /// <param name="s">The string to search for.</param>
-    /// <returns></returns>
+    /// <returns>True if a case-insensitive partial match is found; False otherwise.</returns>
     public bool ContainsPartialMatch(IEnumerable<string> contentsToBeSearched, string s)
     {
         foreach (string contentLine in contentsToBeSearched)

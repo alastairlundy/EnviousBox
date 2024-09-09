@@ -29,12 +29,12 @@ namespace Far.Library;
 public class StringReplacer : IStringReplacer
 {
     /// <summary>
-    /// 
+    /// Replaces a string at a specified position.
     /// </summary>
-    /// <param name="original"></param>
-    /// <param name="itemPosition"></param>
-    /// <param name="replacement"></param>
-    /// <returns></returns>
+    /// <param name="original">The string to be replaced.</param>
+    /// <param name="itemPosition">The position of the string to be replaced.</param>
+    /// <param name="replacement">The replacement string.</param>
+    /// <returns>The modified string with the specified original string replaced.</returns>
     public string Replace(string original, StringPosition itemPosition, string replacement)
     {
         if (original.Split(Environment.NewLine).Length > 0)
@@ -62,12 +62,12 @@ public class StringReplacer : IStringReplacer
     }
 
     /// <summary>
-    /// 
+    /// Replaces a string at a specified position.
     /// </summary>
-    /// <param name="original"></param>
-    /// <param name="itemToBeReplaced"></param>
-    /// <param name="replacement"></param>
-    /// <returns>the modified string.</returns>
+    /// <param name="original">The string to be replaced.</param>
+    /// <param name="itemToBeReplaced">The position of the string to be replaced.</param>
+    /// <param name="replacement">The replacement string.</param>
+    /// <returns>The modified string.</returns>
     public string Replace(string original, SearchResultItem itemToBeReplaced, string replacement)
     {
         foreach (StringPosition position in itemToBeReplaced.ResultPositions)
@@ -98,12 +98,12 @@ public class StringReplacer : IStringReplacer
     }
 
     /// <summary>
-    /// 
+    /// Replaces a specified string in an IEnumerable of strings with a specified replacement character.
     /// </summary>
     /// <param name="enumerable">The enumerable to be searched and modified.</param>
     /// <param name="itemToBeReplaced">The search result item to be replaced.</param>
     /// <param name="replacement">The replacement string</param>
-    /// <returns></returns>
+    /// <returns>The modified IEnumerable of strings.</returns>
     public IEnumerable<string> Replace(IEnumerable<string> enumerable, SearchResultItem itemToBeReplaced, string replacement)
     {
         string[] output = enumerable.ToArray();
@@ -122,7 +122,7 @@ public class StringReplacer : IStringReplacer
     /// <param name="original">The string to be searched.</param>
     /// <param name="toBeReplaced">The char to be replaced.</param>
     /// <param name="replacementChar">The char to be used as the replacement.</param>
-    /// <returns>the modified string if the string contained the char to be replaced; the original string otherwise.</returns>
+    /// <returns>The modified string if the string contained the char to be replaced; The original string otherwise.</returns>
     public string ReplaceCharacter(string original, char toBeReplaced, char replacementChar)
     {
         StringBuilder builder = new StringBuilder();
@@ -148,7 +148,7 @@ public class StringReplacer : IStringReplacer
     /// <param name="enumerable">The IEnumerable of strings to be searched.</param>
     /// <param name="toBeReplaced">The char to be replaced.</param>
     /// <param name="replacementChar">The char to be used as the replacement.</param>
-    /// <returns>the modified IEnumerable of strings if the char to be replaced was found; the unmodified original IEnumerable otherwise.</returns>
+    /// <returns>The modified IEnumerable of strings if the char to be replaced was found; The unmodified original IEnumerable otherwise.</returns>
     public IEnumerable<string> ReplaceCharacter(IEnumerable<string> enumerable, char toBeReplaced, char replacementChar)
     {
         List<string> output = new();
@@ -177,7 +177,7 @@ public class StringReplacer : IStringReplacer
     /// <param name="original">The string to be searched.</param>
     /// <param name="toBeReplaced">The string to be replaced.</param>
     /// <param name="replacementString">The replacement string.</param>
-    /// <returns>the modified string if the string contained the string to be replaced; the original string otherwise.</returns>
+    /// <returns>The modified string if the string contained the string to be replaced; The original string otherwise.</returns>
     public string ReplaceExactMatch(string original, string toBeReplaced, string replacementString)
     {
         string output = original;
@@ -196,7 +196,7 @@ public class StringReplacer : IStringReplacer
     /// <param name="enumerable">The IEnumerable of strings to be searched.</param>
     /// <param name="toBeReplaced">The string to be replaced.</param>
     /// <param name="replacementString">The replacement string.</param>
-    /// <returns>the modified IEnumerable of strings if the string to be replaced was found; the unmodified original IEnumerable otherwise.</returns>
+    /// <returns>The modified IEnumerable of strings if the string to be replaced was found; The unmodified original IEnumerable otherwise.</returns>
     public IEnumerable<string> ReplaceExactMatch(IEnumerable<string> enumerable, string toBeReplaced, string replacementString)
     {
         List<string> output = new();
@@ -222,7 +222,7 @@ public class StringReplacer : IStringReplacer
     /// <param name="original">The string to be searched.</param>
     /// <param name="toBeReplaced">The string to be replaced.</param>
     /// <param name="replacementString">The replacement string.</param>
-    /// <returns>the modified IEnumerable of strings if the string to be replaced was found; the unmodified original IEnumerable otherwise.</returns>
+    /// <returns>The modified IEnumerable of strings if the string to be replaced was found; The unmodified original IEnumerable otherwise.</returns>
     public string ReplacePartialMatch(string original, string toBeReplaced, string replacementString)
     {
         string output = original;
@@ -258,7 +258,7 @@ public class StringReplacer : IStringReplacer
     /// <param name="enumerable">The IEnumerable of strings to be searched.</param>
     /// <param name="toBeReplaced">The string to be replaced.</param>
     /// <param name="replacementString">The replacement string.</param>
-    /// <returns>the modified IEnumerable of strings if the string to be replaced was found; the unmodified original IEnumerable otherwise.</returns>
+    /// <returns>The modified IEnumerable of strings if the string to be replaced was found; The unmodified original IEnumerable otherwise.</returns>
     public IEnumerable<string> ReplacePartialMatch(IEnumerable<string> enumerable, string toBeReplaced, string replacementString)
     {
         List<string> output = new();

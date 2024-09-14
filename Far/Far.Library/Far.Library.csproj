@@ -27,7 +27,7 @@
 
     <ItemGroup>
       <PackageReference Include="AlastairLundy.Extensions.Collections" Version="5.*" />
-      <PackageReference Include="AlastairLundy.Extensions.System" Version="5.*"/>
+      <PackageReference Include="AlastairLundy.Extensions.System" Version="5.2.0-preview.2" />
     </ItemGroup>
 
     <ItemGroup>

@@ -24,10 +24,11 @@ using System.Threading.Tasks;
 using AlastairLundy.Extensions.Collections.IEnumerables;
 
 using Far.Library.Abstractions;
-using Far.Library.Extensions;
 using Far.Library.Models;
 
 using AlastairLundy.Extensions.System;
+
+using AlastairLundy.Extensions.System.Matching;
 
 namespace Far.Library;
 
@@ -257,6 +258,8 @@ public class StringSearcher : IStringSearcher
             {
                 return true;
             }
+            
+            
 
             foreach (string word in contentLine.Split(' '))
             {

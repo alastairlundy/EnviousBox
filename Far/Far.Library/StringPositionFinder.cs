@@ -31,7 +31,7 @@ namespace Far.Library;
 /// </summary>
 public class StringPositionFinder : IStringPositionFinder
 {
-    protected IEnumerable<CharPosition> SearchStringForChar(string input, char expected, int lineNumber, bool ignoreCase)
+    protected IEnumerable<CharPosition> SearchForChar(string input, char expected, int lineNumber, bool ignoreCase)
     {
         List<CharPosition> positions = new List<CharPosition>();
         positions.TrimExcess();
@@ -81,12 +81,12 @@ public class StringPositionFinder : IStringPositionFinder
 
                 foreach (string line in lines)
                 {
-                    positions = positions.Combine(SearchStringForChar(line, expected, lineCount, ignoreCase)).ToList();
+                    positions = positions.Combine(SearchForChar(line, expected, lineCount, ignoreCase)).ToList();
                 }
             }
             else
             {
-                positions = positions.Combine(SearchStringForChar(toBeSearched, expected, 0, ignoreCase)).ToList();
+                positions = positions.Combine(SearchForChar(toBeSearched, expected, 0, ignoreCase)).ToList();
             }
         }
 
@@ -115,7 +115,7 @@ public class StringPositionFinder : IStringPositionFinder
             {
                 for (int i = 0; i < line.Length; i++)
                 {
-                   charPositions = charPositions.Combine(SearchStringForChar(line, expected, lineCount, ignoreCase)).ToList();
+                   charPositions = charPositions.Combine(SearchForChar(line, expected, lineCount, ignoreCase)).ToList();
                 }
                 
                 lineCount++;
@@ -125,7 +125,7 @@ public class StringPositionFinder : IStringPositionFinder
         return charPositions;
     }
 
-    protected IEnumerable<StringPosition> SearchStringForString(string str, string expected, bool ignoreCase, int lineNumber)
+    protected IEnumerable<StringPosition> SearchForString(string str, string expected, bool ignoreCase, int lineNumber)
     {
         List<StringPosition> positions = new();
 
@@ -191,7 +191,7 @@ public class StringPositionFinder : IStringPositionFinder
             {
                 if (line.Contains(expected))
                 {
-                   stringPositions = stringPositions.Combine(SearchStringForString(line, expected, ignoreCase, lineCount).ToList()).ToList();
+                   stringPositions = stringPositions.Combine(SearchForString(line, expected, ignoreCase, lineCount).ToList()).ToList();
                 }
 
                 lineCount++;
@@ -199,7 +199,7 @@ public class StringPositionFinder : IStringPositionFinder
         }
         else
         {
-            stringPositions = SearchStringForString(stringToBeSearched, expected, ignoreCase, 0).ToList();
+            stringPositions = SearchForString(stringToBeSearched, expected, ignoreCase, 0).ToList();
         }
 
         return stringPositions;
@@ -219,7 +219,7 @@ public class StringPositionFinder : IStringPositionFinder
         
         foreach (string str in strings)
         {
-            stringPositions = stringPositions.Combine(SearchStringForString(str, expected, ignoreCase, stringPositions.Count)).ToList(); 
+            stringPositions = stringPositions.Combine(SearchForString(str, expected, ignoreCase, stringPositions.Count)).ToList(); 
         }
         
         return stringPositions;

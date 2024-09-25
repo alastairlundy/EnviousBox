@@ -12,7 +12,7 @@ These are the current and upcoming programs in Envious Box.
 | Program name | Description | Written  In |
 |-|-|-|
 | where | Find all files and folders containing the specified string. | C# |
-| far | Find and Replace any string of text in any file. | C# |
+
 
 ## Licensing
 All programs in Envious Box are licensed under the LGPLv3 license.

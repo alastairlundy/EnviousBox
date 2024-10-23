@@ -9,6 +9,7 @@ These are the current and upcoming programs in Envious Box.
 |-|-|-|-|
 | Round | round | Round a given number to a specified number of decimal places or significant figures. | C# |
 | Average | average | Calculate averages easily (Supports mode, median, arithmetic mean, and geometric mean). | C# |
+| Pow | pow | Calculates square root, cube root, and any value to a positive or negative power. | C# |
 
 #### Programs being developed
 | Program name | Description | Written  In |

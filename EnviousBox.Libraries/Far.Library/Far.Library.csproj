@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>disable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <Title>Far.Library</Title>
+        <Authors>AlastairLundy</Authors>
+        <Copyright>Copyright (c) Alastair Lundy 2024 </Copyright>
+        <RepositoryUrl>https://github.com/alastairlundy/EnviousBox/</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageReleaseNotes>### Changes since 1.0
+* Breaking API Changes to ``StringReplacer``
+* Renamed ``StringFinder`` to ``StringSearcher``
+* Added ``StringPositionFinder``
+* Added ``StringIndexFinder``
+* Added interfaces for business logic classes
+* Added additional models</PackageReleaseNotes>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Description>Find (and optionally Replace) characters or strings within strings.</Description>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <LangVersion>default</LangVersion>
+        <Version>2.0.1</Version>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <None Remove="LICENSE.txt" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AlastairLundy.Extensions.Collections" Version="[5.4.0,6.0.0)" />
+      <PackageReference Include="AlastairLundy.Extensions.System" Version="[5.2.0,6.0.0)" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="README.md">
+            <Link>README.md</Link>
+            <PackagePath>README.md</PackagePath>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="LICENSE.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		  <Link>LICENSE.txt</Link>
+		  <PackagePath>LICENSE.txt</PackagePath>
+      </Content>
+    </ItemGroup>
+    
+</Project>

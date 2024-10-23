@@ -29,4 +29,17 @@
       </Compile>
     </ItemGroup>
 
+    <ItemGroup>
+      <Reference Include="Caesar.Library">
+        <HintPath>..\..\EnviousBox.Libraries\Caesar.Library\bin\Release\net8.0\Caesar.Library.dll</HintPath>
+      </Reference>
+      <Reference Include="Far.Library">
+        <HintPath>..\..\EnviousBox.Libraries\Far.Library\bin\Release\net8.0\Far.Library.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Tools\Far\Settings\" />
+    </ItemGroup>
+
 </Project>

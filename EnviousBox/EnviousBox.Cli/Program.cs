@@ -18,6 +18,8 @@
 using EnviousBox.Cli.Localizations;
 
 using EnviousBox.Cli.Tools.Average.Commands;
+using EnviousBox.Cli.Tools.Caesar.Commands;
+using EnviousBox.Cli.Tools.Pow.Commands;
 using EnviousBox.Cli.Tools.Round.Commands;
 
 using Spectre.Console.Cli;
@@ -80,6 +82,53 @@ app.Configure(config =>
             .WithAlias("iqr-mean")
             .WithDescription(Resources.Apps_Average_Command_InterquartileMean_Description)
             .WithExample("1", "2", "3", "4", "5", "6");
+    });
+
+    config.AddBranch("pow", conf =>
+    {
+
+        conf.AddCommand<SquareRootCommand>("sqrt")
+            .WithAlias("squareroot")
+            .WithAlias("square-root");
+
+        conf.AddCommand<CubeRootCommand>("cbrt")
+            .WithAlias("cuberoot")
+            .WithAlias("cube-root");
+
+        conf.AddCommand<RootCommand>("root")
+            .WithAlias("rt");
+
+        conf.AddCommand<PowerCommand>("power")
+            .WithAlias("pwr");
+    });
+
+    config.AddBranch("caesar", conf =>
+    {
+        conf.AddBranch<CommandSettings>("encode", add =>
+        {
+            add.AddCommand<CaesarEncodeCommand>("string")
+                .WithAlias("")
+                .WithDescription(Resources.Apps_Caesar_Command_Encode_Label);
+        
+            add.AddCommand<CaesarEncodeFileCommand>("file");
+        });
+    
+        conf.AddBranch<CommandSettings>("decode", add =>
+        {
+            add.AddCommand<CaesarDecodeCommand>("string")
+                .WithAlias("")
+                .WithDescription(Resources.Apps_Caesar_Command_Decode_Label);
+        
+            add.AddCommand<CaesarDecodeFileCommand>("file");
+        });
+        
+    });
+
+    config.AddBranch("far", conf =>
+    {
+
+        
+        
     });
 
     config.UseAssemblyInformationalVersion();

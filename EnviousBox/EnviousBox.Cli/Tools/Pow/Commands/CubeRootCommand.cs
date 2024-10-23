@@ -62,7 +62,7 @@ public class CubeRootCommand : Command<CubeRootCommand.Settings>
                     return 0;
                 }
 
-                throw new ArgumentException(Resources.File_Save_AlreadyExists);
+                throw new ArgumentException(Resources.File_Saved_AlreadyExists);
             }
             catch(Exception exception)
             {

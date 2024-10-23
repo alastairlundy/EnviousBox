@@ -100,4 +100,13 @@
     <data name="Numbers.Description" xml:space="preserve">
         <value>The numbers to get the average of.</value>
     </data>
+    <data name="File.Saved.AlreadyExists" xml:space="preserve">
+        <value>The file specified already exists.</value>
+    </data>
+    <data name="Apps.Caesar.Command.Decode.Label" xml:space="preserve">
+        <value>Decode text using the Caesar Cipher, either using a number provided or a random number.</value>
+    </data>
+    <data name="Apps.Caesar.Command.Encode.Label" xml:space="preserve">
+        <value>Encode text using the Caesar Cipher, either using a number provided or a random number.</value>
+    </data>
 </root>

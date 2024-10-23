@@ -66,7 +66,7 @@ namespace EnviousBox.Cli.Tools.Pow.Commands;
                         return 0;
                     }
 
-                    throw new ArgumentException(Resources.FileSaved_AlreadyExists);
+                    throw new ArgumentException(Resources.File_Saved_AlreadyExists);
                 }
                 catch(Exception exception)
                 {

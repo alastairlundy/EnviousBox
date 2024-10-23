@@ -123,6 +123,24 @@ namespace EnviousBox.Cli.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Decode text using the Caesar Cipher, either using a number provided or a random number..
+        /// </summary>
+        internal static string Apps_Caesar_Command_Decode_Label {
+            get {
+                return ResourceManager.GetString("Apps.Caesar.Command.Decode.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Encode text using the Caesar Cipher, either using a number provided or a random number..
+        /// </summary>
+        internal static string Apps_Caesar_Command_Encode_Label {
+            get {
+                return ResourceManager.GetString("Apps.Caesar.Command.Encode.Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Round a number to a specified number of decimal places..
         /// </summary>
         internal static string Apps_Round_Command_Round_Decimal_Description {
@@ -255,6 +273,15 @@ namespace EnviousBox.Cli.Localizations {
         internal static string File_Save_Success {
             get {
                 return ResourceManager.GetString("File.Save.Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file specified already exists..
+        /// </summary>
+        internal static string File_Saved_AlreadyExists {
+            get {
+                return ResourceManager.GetString("File.Saved.AlreadyExists", resourceCulture);
             }
         }
         

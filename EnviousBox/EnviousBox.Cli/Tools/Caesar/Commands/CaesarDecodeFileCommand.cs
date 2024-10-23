@@ -18,13 +18,17 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+
+using Caesar.Library;
+
 using EnviousBox.Cli.Tools.Caesar.Helpers;
+
 using Spectre.Console;
 using Spectre.Console.Cli;
 
 namespace EnviousBox.Cli.Tools.Caesar.Commands;
 
-public class EncodeFileCommand : Command<EncodeFileCommand.Settings>
+public class CaesarDecodeFileCommand : Command<CaesarDecodeFileCommand.Settings>
 {
     public class Settings : CommandSettings
     {
@@ -56,7 +60,7 @@ public class EncodeFileCommand : Command<EncodeFileCommand.Settings>
 
         foreach (string line in lines)
         {
-            string[] newWords = caesarCipher.Encode(File.ReadAllLines(line), shift);
+            string[] newWords = caesarCipher.Decode(File.ReadAllLines(line), shift);
 
             foreach (string word in newWords)
             {
@@ -75,7 +79,7 @@ public class EncodeFileCommand : Command<EncodeFileCommand.Settings>
             {
                 AnsiConsole.WriteException(exception);
                 return -1;
-            }        
+            }
         }
         else
         {

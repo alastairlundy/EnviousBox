@@ -17,13 +17,17 @@
 
 using System;
 using System.IO;
+
+using Caesar.Library;
+
 using EnviousBox.Cli.Tools.Caesar.Helpers;
+
 using Spectre.Console;
 using Spectre.Console.Cli;
 
 namespace EnviousBox.Cli.Tools.Caesar.Commands;
 
-public class EncodeCommand : Command<EncodeCommand.Settings>
+public class CaesarEncodeCommand : Command<CaesarEncodeCommand.Settings>
 {
     public class Settings : CommandSettings
     {

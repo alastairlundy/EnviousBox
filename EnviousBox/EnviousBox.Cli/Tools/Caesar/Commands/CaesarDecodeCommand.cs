@@ -16,68 +16,48 @@
  */
 
 using System;
-using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
+
+using Caesar.Library;
+
 using EnviousBox.Cli.Tools.Caesar.Helpers;
+
 using Spectre.Console;
 using Spectre.Console.Cli;
 
 namespace EnviousBox.Cli.Tools.Caesar.Commands;
 
-public class DecodeFileCommand : Command<DecodeFileCommand.Settings>
+public class CaesarDecodeCommand : Command<CaesarDecodeCommand.Settings>
 {
     public class Settings : CommandSettings
     {
-        [CommandArgument(0, "<Files>")]
-        public string? File { get; init; }
+        [CommandArgument(0, "<Words>")]
+        public string[]? Words { get; init; }
         
         [CommandOption("-o|--output:<file>")]
         public string? OutputFile { get; init; }
             
         [CommandOption("-s|--shift:<number_to_shift_by>")]
+        [DefaultValue(null)]
         public int? ShiftAmount { get; init; }
     }
 
     public override int Execute(CommandContext context, Settings settings)
     {
-        if (settings.File == null)
+        int shift = ConsoleHelper.ShiftHandler(settings.ShiftAmount);
+
+        if (settings.Words == null)
         {
-            AnsiConsole.WriteException(new FileNotFoundException());
+            AnsiConsole.WriteException(new NullReferenceException());
             return -1;
         }
         
-        int shift = ConsoleHelper.ShiftHandler(settings.ShiftAmount);
-
         CaesarCipher caesarCipher = new CaesarCipher();
-
-        List<string> newValues = new List<string>();
         
-        string[] lines = File.ReadAllLines(settings.File);
+        string[] newValues = caesarCipher.Decode(settings.Words!, shift);
 
-        foreach (string line in lines)
-        {
-            string[] newWords = caesarCipher.Decode(File.ReadAllLines(line), shift);
-
-            foreach (string word in newWords)
-            {
-                newValues.Add(word);
-            }
-        }
-
-        if (settings.OutputFile == null)
-        {
-            try
-            {
-                File.WriteAllLines(settings.File, newValues);
-                return 0;
-            }
-            catch (Exception exception)
-            {
-                AnsiConsole.WriteException(exception);
-                return -1;
-            }
-        }
-        else
+        if (settings.OutputFile != null)
         {
             try
             {
@@ -88,7 +68,10 @@ public class DecodeFileCommand : Command<DecodeFileCommand.Settings>
             {
                 AnsiConsole.WriteException(exception);
                 return -1;
-            }        
+            }
         }
+        
+        ConsoleHelper.PrintResults(newValues);
+        return 0;
     }
 }

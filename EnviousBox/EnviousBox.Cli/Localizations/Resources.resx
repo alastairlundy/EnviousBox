@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="Apps.Round.Command.Round.Decimal.Description" xml:space="preserve">
+        <value>Round a number to a specified number of decimal places.</value>
+    </data>
+    <data name="Apps.Round.Command.Round.SignificantFigure.Description" xml:space="preserve">
+        <value>Round a number to a specified number of Significant Figures.</value>
+    </data>
+    <data name="Apps.Round.Input.Rounding.SignificantFigures" xml:space="preserve">
+        <value>The number of Significant Figures you wanted was</value>
+    </data>
+    <data name="Apps.Round.Input.Rounding.SignificantFigures.NotProvided" xml:space="preserve">
+        <value>You didn't provide the number of Significant Figures you wanted, so we defaulted to</value>
+    </data>
+    <data name="Apps.Round.Input.Rounding.DecimalPlaces" xml:space="preserve">
+        <value>The number of Decimal Places you wanted was</value>
+    </data>
+    <data name="Apps.Round.Input.Rounding.DecimalPlaces.NotProvided" xml:space="preserve">
+        <value>You didn't provide the number of Decimal Places you wanted, so we defaulted to</value>
+    </data>
+    <data name="Apps.Round.Input.ProvidedValue" xml:space="preserve">
+        <value>The value you provided was</value>
+    </data>
+    <data name="Apps.Round.Input.RoundedValue" xml:space="preserve">
+        <value>The value rounded to the precision you specified</value>
+    </data>
+    <data name="Apps.Round.Error.Number.NoInput" xml:space="preserve">
+        <value>No number to be rounded was provided.</value>
+    </data>
+    <data name="Apps.Round.Description" xml:space="preserve">
+        <value>Round a given number to a specified number of decimal places or significant figures.
+</value>
+    </data>
+    <data name="Apps.Average.Command.ArithmeticMean.About" xml:space="preserve">
+        <value>The sum of a set of numbers divided by the number of numbers provided</value>
+    </data>
+    <data name="Apps.Average.Command.ArithmeticMean.Description" xml:space="preserve">
+        <value>Calculate the arithmetic mean of a set of numbers</value>
+    </data>
+    <data name="Apps.Average.Command.GeometricMean.Description" xml:space="preserve">
+        <value>Calculate the geometric mean of a set of numbers</value>
+    </data>
+    <data name="Apps.Average.Command.InterquartileMean.Description" xml:space="preserve">
+        <value>Returns the truncated mean of the interquartile range of a set of values.</value>
+    </data>
+    <data name="Apps.Average.Command.Median.Description" xml:space="preserve">
+        <value>Returns the middle value in a set of numbers.</value>
+    </data>
+    <data name="Apps.Average.Command.MidRange.Description" xml:space="preserve">
+        <value>Returns the arithmetic mean of the smallest and largest values in an array.</value>
+    </data>
+    <data name="Apps.Average.Command.Mode.Description" xml:space="preserve">
+        <value>Returns the most common value(s) found within a set of numbers.</value>
+    </data>
+    <data name="Output.Pretty.Description" xml:space="preserve">
+        <value>Displays the results with prettier formatting.</value>
+    </data>
+    <data name="Output.Standard.Description" xml:space="preserve">
+        <value>Displays the results without pretty formatting.</value>
+    </data>
+    <data name="Rounding.DecimalPlaces.Description" xml:space="preserve">
+        <value>The number of decimal places to round the result to.</value>
+    </data>
+    <data name="Rounding.SignificantFigures.Description" xml:space="preserve">
+        <value>The number of significant figures to round the result to</value>
+    </data>
+    <data name="Error.Title" xml:space="preserve">
+        <value>Error(s)</value>
+    </data>
+    <data name="Errors.InvalidInputCount" xml:space="preserve">
+        <value>An invalid number of inputs was provided. At least X values were required.</value>
+    </data>
+    <data name="Errors.NoInput.Title" xml:space="preserve">
+        <value>No Input Provided</value>
+    </data>
+    <data name="File.Save.Error" xml:space="preserve">
+        <value>The results file couldn't be saved. Here's why:</value>
+    </data>
+    <data name="File.Save.Success" xml:space="preserve">
+        <value>The results file was successfully saved to.</value>
+    </data>
+    <data name="Numbers.Description" xml:space="preserve">
+        <value>The numbers to get the average of.</value>
+    </data>
+</root>

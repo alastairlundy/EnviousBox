@@ -19,6 +19,7 @@ using EnviousBox.Cli.Localizations;
 
 using EnviousBox.Cli.Tools.Average.Commands;
 using EnviousBox.Cli.Tools.Caesar.Commands;
+using EnviousBox.Cli.Tools.Improve.Commands;
 using EnviousBox.Cli.Tools.Pow.Commands;
 using EnviousBox.Cli.Tools.Round.Commands;
 
@@ -104,26 +105,48 @@ app.Configure(config =>
 
     config.AddBranch("caesar", conf =>
     {
-        conf.AddBranch<CommandSettings>("encode", add =>
+        conf.AddBranch<CommandSettings>("encode", encodeConf =>
         {
-            add.AddCommand<CaesarEncodeCommand>("string")
+            encodeConf.AddCommand<CaesarEncodeCommand>("string")
                 .WithAlias("")
                 .WithDescription(Resources.Apps_Caesar_Command_Encode_Label);
         
-            add.AddCommand<CaesarEncodeFileCommand>("file");
+            encodeConf.AddCommand<CaesarEncodeFileCommand>("file");
         });
     
-        conf.AddBranch<CommandSettings>("decode", add =>
+        conf.AddBranch<CommandSettings>("decode", decodeConf =>
         {
-            add.AddCommand<CaesarDecodeCommand>("string")
+            decodeConf.AddCommand<CaesarDecodeCommand>("string")
                 .WithAlias("")
                 .WithDescription(Resources.Apps_Caesar_Command_Decode_Label);
         
-            add.AddCommand<CaesarDecodeFileCommand>("file");
+            decodeConf.AddCommand<CaesarDecodeFileCommand>("file");
         });
         
     });
 
+    config.AddBranch("improve", conf =>
+    {
+        // Commands to be added:
+        // "update" - Apply available updates
+        // "install"
+        // "remove"
+        // "clean"
+        
+        conf.AddBranch("list", listConf =>
+        {
+            listConf.AddCommand<ImproveListInstalledAppsCommand>("installed")
+                .WithAlias("")
+                .WithDescription(Resources.App_Improve_Command_List_Installed_Description);
+            
+            listConf.AddCommand<ImproveListUpdatesCommand>("updates")
+                .WithAlias("upgrades")
+                .WithDescription(Resources.App_Improve_Command_List_Updates_Description);
+            
+        });
+
+    });
+    
     config.AddBranch("far", conf =>
     {
 

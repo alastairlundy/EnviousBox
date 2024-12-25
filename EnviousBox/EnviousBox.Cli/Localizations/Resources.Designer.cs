@@ -60,6 +60,24 @@ namespace EnviousBox.Cli.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to List all installed programs..
+        /// </summary>
+        internal static string App_Improve_Command_List_Installed_Description {
+            get {
+                return ResourceManager.GetString("App.Improve.Command.List.Installed.Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List all programs with available updates that are are detected. .
+        /// </summary>
+        internal static string App_Improve_Command_List_Updates_Description {
+            get {
+                return ResourceManager.GetString("App.Improve.Command.List.Updates.Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The sum of a set of numbers divided by the number of numbers provided.
         /// </summary>
         internal static string Apps_Average_Command_ArithmeticMean_About {

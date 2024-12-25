@@ -109,4 +109,10 @@
     <data name="Apps.Caesar.Command.Encode.Label" xml:space="preserve">
         <value>Encode text using the Caesar Cipher, either using a number provided or a random number.</value>
     </data>
+    <data name="App.Improve.Command.List.Updates.Description" xml:space="preserve">
+        <value>List all programs with available updates that are are detected. </value>
+    </data>
+    <data name="App.Improve.Command.List.Installed.Description" xml:space="preserve">
+        <value>List all installed programs.</value>
+    </data>
 </root>

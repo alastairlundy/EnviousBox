@@ -16,6 +16,7 @@
  */
 
 using System;
+
 using Spectre.Console.Cli;
 
 namespace EnviousBox.Cli.Tools.Far.Commands;

@@ -125,27 +125,7 @@ app.Configure(config =>
         
     });
 
-    config.AddBranch("improve", conf =>
-    {
-        // Commands to be added:
-        // "update" - Apply available updates
-        // "install"
-        // "remove"
-        // "clean"
-        
-        conf.AddBranch("list", listConf =>
-        {
-            listConf.AddCommand<ImproveListInstalledAppsCommand>("installed")
-                .WithAlias("")
-                .WithDescription(Resources.App_Improve_Command_List_Installed_Description);
-            
-            listConf.AddCommand<ImproveListUpdatesCommand>("updates")
-                .WithAlias("upgrades")
-                .WithDescription(Resources.App_Improve_Command_List_Updates_Description);
-            
-        });
-
-    });
+    
     
     config.AddBranch("far", conf =>
     {

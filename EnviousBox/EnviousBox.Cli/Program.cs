@@ -19,7 +19,6 @@ using EnviousBox.Cli.Localizations;
 
 using EnviousBox.Cli.Tools.Average.Commands;
 using EnviousBox.Cli.Tools.Caesar.Commands;
-using EnviousBox.Cli.Tools.Improve.Commands;
 using EnviousBox.Cli.Tools.Pow.Commands;
 using EnviousBox.Cli.Tools.Round.Commands;
 

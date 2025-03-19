@@ -20,7 +20,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-using AlastairLundy.Extensions.Collections.Specializations.Strings;
+using AlastairLundy.Extensions.Collections.Strings;
 
 using AlastairLundy.Extensions.Maths.Averages;
 using EnviousBox.Cli.Localizations;
@@ -53,7 +53,7 @@ public class ModeCommand : Command<ModeCommand.Settings>
         {
             try
             {
-                File.WriteAllLines(settings.FileOutput!, modes.ToArray().ToStringEnumerable());
+                File.WriteAllLines(settings.FileOutput, modes.ToArray().ToStringEnumerable());
                 AnsiConsole.WriteLine($"{Resources.File_Save_Success} {settings.FileOutput}");
 
                 return 0;

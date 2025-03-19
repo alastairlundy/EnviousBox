@@ -18,8 +18,11 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using AlastairLundy.Extensions.Collections.Specializations.Strings;
+
+using AlastairLundy.Extensions.Collections.Strings;
+
 using AlastairLundy.Extensions.Maths.Powers;
+
 using EnviousBox.Cli.Localizations;
 using EnviousBox.Cli.Tools.Pow.Settings;
 using Spectre.Console;

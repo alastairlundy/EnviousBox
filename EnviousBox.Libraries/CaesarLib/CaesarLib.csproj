@@ -1,25 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
+        <TargetFrameworks>netstandard2.0;netstandard2.1;net8.0</TargetFrameworks>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Title>Caesar.Library</Title>
-        <Copyright>Copyright (c) 2024 Alastair Lundy</Copyright>
+        <Title>CaesarLib</Title>
+        <Copyright>Copyright (c) 2024-2025 Alastair Lundy</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/EnviousBox</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+        <AssemblyName>AlastairLundy.CaesarLib</AssemblyName>
+        <RootNamespace>AlastairLundy.CaesarLib</RootNamespace>
+        <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
     </PropertyGroup>
-
-    <ItemGroup>
-        <Content Include="LICENSE.txt">
-            <Link>LICENSE.txt</Link>
-            <PackagePath>LICENSE.txt</PackagePath>
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-        </Content>
-    </ItemGroup>
 
 </Project>

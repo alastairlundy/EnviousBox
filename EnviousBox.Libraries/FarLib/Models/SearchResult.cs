@@ -15,36 +15,61 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace Far.Library.Models;
+namespace AlastairLundy.FarLib.Models;
 
-public class SearchResultItem : IEquatable<SearchResultItem>
+public class SearchResult : IEquatable<SearchResult>
 {
-    public SearchResultItem()
+
+    public SearchResult(IEnumerable<SearchResultItem> ExactMatches, IEnumerable<SearchResultItem> PartialMatches)
     {
-        ResultPositions = new List<StringPosition>();
-        ResultValue = string.Empty;
+        this.ExactMatches = ExactMatches;
+        this.PartialMatches = PartialMatches;
     }
 
-    public SearchResultItem(List<StringPosition> resultPositions, string resultValue)
+    public IEnumerable<SearchResultItem> ExactMatches { get; protected set; }
+
+    public IEnumerable<SearchResultItem> PartialMatches { get; protected set; }
+
+    public int NumberOfExactMatches
     {
-        this.ResultPositions = resultPositions;
-        this.ResultValue = resultValue;
+        get
+        {
+            try
+            {
+                return ExactMatches.Count();
+            }
+            catch
+            {
+                return 0;
+            }
+        }
     }
-    
-    public List<StringPosition> ResultPositions { get; set; }
-    
-    public string ResultValue { get; set;  }
+
+    public int NumberOfPartialMatches
+    {
+        get
+        {
+            try
+            {
+                return PartialMatches.Count();
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+    }
 
     /// <summary>
     /// 
     /// </summary>
     /// <param name="other"></param>
     /// <returns></returns>
-    public bool Equals(SearchResultItem? other)
+    public bool Equals(SearchResult? other)
     {
         if (other is null)
         {
@@ -52,7 +77,7 @@ public class SearchResultItem : IEquatable<SearchResultItem>
         }
         else
         {
-            return ResultPositions.Equals(other.ResultPositions) && ResultValue.Equals(other.ResultValue);
+            return this.ExactMatches.SequenceEqual(other.ExactMatches) && this.PartialMatches.SequenceEqual(other.PartialMatches);
         }
     }
 
@@ -63,14 +88,13 @@ public class SearchResultItem : IEquatable<SearchResultItem>
     /// <returns></returns>
     public override bool Equals(object? obj)
     {
-        if (obj is null)
+        if (obj is null || obj is not SearchResult)
         {
             return false;
         }
-
-        if (obj is SearchResultItem item)
+        else if (obj is SearchResult searchResult)
         {
-            return Equals(item);
+            return Equals(searchResult);
         }
         else
         {
@@ -78,12 +102,8 @@ public class SearchResultItem : IEquatable<SearchResultItem>
         }
     }
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <returns></returns>
     public override int GetHashCode()
     {
-        return HashCode.Combine(ResultPositions, ResultValue);
+        return HashCode.Combine(ExactMatches, PartialMatches);
     }
 }

@@ -15,22 +15,19 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-using AlastairLundy.Extensions.Collections.IEnumerables;
+using AlastairLundy.Extensions.Collections.Generic;
+using AlastairLundy.Extensions.System.Strings;
+using AlastairLundy.FarLib.Abstractions;
+using AlastairLundy.FarLib.Models;
 
-using Far.Library.Abstractions;
-using Far.Library.Models;
+// ReSharper disable RedundantBoolCompare
 
-using AlastairLundy.Extensions.System;
-
-using AlastairLundy.Extensions.System.Matching;
-
-namespace Far.Library;
+namespace AlastairLundy.FarLib;
 
 public class StringSearcher : IStringSearcher
 {

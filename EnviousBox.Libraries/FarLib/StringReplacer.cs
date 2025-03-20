@@ -18,15 +18,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using AlastairLundy.Extensions.System.Strings;
+using AlastairLundy.FarLib.Abstractions.Replacers;
+using AlastairLundy.FarLib.Models;
 
-using AlastairLundy.Extensions.System;
-using AlastairLundy.Extensions.System.Matching;
-
-using Far.Library.Abstractions.Replacers;
-using Far.Library.Models;
-
-namespace Far.Library;
+namespace AlastairLundy.FarLib;
 
 public class StringReplacer : IStringReplacer
 {
@@ -140,7 +136,7 @@ public class StringReplacer : IStringReplacer
                 
                 if (currentTemp.Equals(current))
                 {
-                    if (output[index].IsUpperCaseLetter())
+                    if (output[index].IsUpperCaseCharacter())
                     {
                         tempOutput = tempOutput.Insert(index, current.ToUpper());
                         tempOutput = tempOutput.Remove(index + 1, 1);

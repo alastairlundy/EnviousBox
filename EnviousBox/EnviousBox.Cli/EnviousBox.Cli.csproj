@@ -39,6 +39,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Tools\Calculator\" />
       <Folder Include="Tools\Far\Settings\" />
     </ItemGroup>
 

@@ -1,12 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <Title>Far.Library</Title>
         <Authors>AlastairLundy</Authors>
-        <Copyright>Copyright (c) Alastair Lundy 2024 </Copyright>
+        <Copyright>Copyright (c) Alastair Lundy 2024-2025</Copyright>
         <RepositoryUrl>https://github.com/alastairlundy/EnviousBox/</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageReleaseNotes>### Changes since 1.0
@@ -19,10 +18,14 @@
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Description>Find (and optionally Replace) characters or strings within strings.</Description>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <LangVersion>default</LangVersion>
-        <Version>2.0.1</Version>
+        <Version>2.1.0</Version>
+        <AssemblyName>AlastairLundy.FarLib</AssemblyName>
+        <RootNamespace>AlastairLundy.FarLib</RootNamespace>
+        <TargetFrameworks>net8.0;netstandard2.1</TargetFrameworks>
+        <PackageId>AlastairLundy.FarLib</PackageId>
+        <PackageLicenseExpression>LGPL-3.0-or-later</PackageLicenseExpression>
     </PropertyGroup>
 
     <ItemGroup>
@@ -30,8 +33,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="AlastairLundy.Extensions.Collections" Version="[5.4.0,6.0.0)" />
-      <PackageReference Include="AlastairLundy.Extensions.System" Version="[5.2.0,6.0.0)" />
+      <PackageReference Include="AlastairLundy.Extensions.Collections" Version="[6.0.0, 7.0.0)" />
+      <PackageReference Include="AlastairLundy.Extensions.System" Version="[6.1.0, 7.0.0)" />
     </ItemGroup>
 
     <ItemGroup>
@@ -40,14 +43,6 @@
             <PackagePath>README.md</PackagePath>
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Content>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Content Include="LICENSE.txt">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		  <Link>LICENSE.txt</Link>
-		  <PackagePath>LICENSE.txt</PackagePath>
-      </Content>
     </ItemGroup>
     
 </Project>

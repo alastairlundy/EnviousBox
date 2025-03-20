@@ -15,17 +15,14 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System;
-using System.Collections;
+
 using System.Collections.Generic;
-using System.Linq;
 
-using AlastairLundy.Extensions.Collections.Specializations.Indexes;
-using AlastairLundy.Extensions.System.Indexes;
+using AlastairLundy.Extensions.Collections.Generic;
 
-using Far.Library.Abstractions;
+using AlastairLundy.FarLib.Abstractions;
 
-namespace Far.Library;
+namespace AlastairLundy.FarLib;
 
 public class StringIndexFinder : IStringIndexFinder
 {
@@ -39,17 +36,17 @@ public class StringIndexFinder : IStringIndexFinder
     /// <returns></returns>
     public IEnumerable<int> GetStringIndexes(string toBeSearched, string expected, bool ignoreCase)
     {
-        return toBeSearched.IndexesOf(expected, ignoreCase);
+        
     }
 
     public IEnumerable<int> GetStringIndexes(IEnumerable<string> toBeSearched, string expected, bool ignoreCase)
     {
-        return toBeSearched.StringIndexesOf(expected, ignoreCase);
+        
     }
 
     public IEnumerable<int> GetCharIndexes(IEnumerable<string> toBeSearched, char expected, bool ignoreCase)
     {
-        return toBeSearched.CharIndexesOf(expected, ignoreCase);
+        
     }
 
 
@@ -62,6 +59,6 @@ public class StringIndexFinder : IStringIndexFinder
     /// <returns>The indexes if the char is found.</returns>
     public IEnumerable<int> GetCharIndexes(string toBeSearched, char expected, bool ignoreCase)
     {
-        return toBeSearched.IndexesOf(expected, ignoreCase);
+        
     }
 }

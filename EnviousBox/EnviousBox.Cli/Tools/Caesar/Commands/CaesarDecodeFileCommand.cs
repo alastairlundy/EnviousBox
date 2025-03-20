@@ -19,8 +19,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-using Caesar.Library;
-
 using EnviousBox.Cli.Tools.Caesar.Helpers;
 
 using Spectre.Console;

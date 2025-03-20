@@ -17,7 +17,7 @@
 
 using System;
 
-namespace Far.Library.Models;
+namespace AlastairLundy.FarLib.Models;
 
 public class StringPosition : IEquatable<StringPosition>
 {

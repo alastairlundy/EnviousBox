@@ -16,18 +16,17 @@
  */
 
 using System.Collections.Generic;
-using Far.Library.Models;
+using AlastairLundy.FarLib.Models;
 
-namespace Far.Library.Abstractions.Replacers;
+namespace AlastairLundy.FarLib.Abstractions;
 
-public interface IStringReplacer
+public interface IStringPositionFinder
 {
-    public string Replace(string original, StringPosition itemPositionToReplace, string replacement);
-    public string Replace(string original, SearchResultItem itemToBeReplaced, string replacement);
-    public IEnumerable<string> Replace(IEnumerable<string> enumerable, SearchResultItem itemToBeReplaced, string replacement);
+    public IEnumerable<CharPosition> GetCharPositions(string toBeSearched, char expected, bool ignoreCase);
+    public IEnumerable<CharPosition> GetCharPositions(IEnumerable<string> strings, char expected, bool ignoreCase);
 
-    public string ReplacePartialMatch(string original, string toBeReplaced, string replacementString);
+    public IEnumerable<StringPosition> GetStringPositions(string stringToBeSearched, string expected, bool ignoreCase);
 
-    public IEnumerable<string> ReplacePartialMatch(IEnumerable<string> enumerable, string toBeReplaced,
-        string replacementString);
+    public IEnumerable<StringPosition> GetStringPositions(IEnumerable<string> strings, string expected, bool ignoreCase);
+    
 }

@@ -18,24 +18,23 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using AlastairLundy.Extensions.Collections.Generic;
 
-using AlastairLundy.Extensions.Collections.IEnumerables;
+using AlastairLundy.FarLib.Abstractions;
+using AlastairLundy.FarLib.Models;
 
-using Far.Library.Abstractions;
-using Far.Library.Models;
-
-namespace Far.Library;
+namespace AlastairLundy.FarLib;
 
 /// <summary>
 /// 
 /// </summary>
 public class StringPositionFinder : IStringPositionFinder
 {
-    protected IStringIndexFinder stringIndexFinder;
+    private readonly IStringIndexFinder _stringIndexFinder;
 
     public StringPositionFinder(IStringIndexFinder stringIndexFinder)
     {
-        this.stringIndexFinder = stringIndexFinder;
+        this._stringIndexFinder = stringIndexFinder;
     }
 
     protected IEnumerable<CharPosition> SearchForChar(string input, char expected, int lineNumber, bool ignoreCase)
@@ -43,7 +42,7 @@ public class StringPositionFinder : IStringPositionFinder
         List<CharPosition> positions = new List<CharPosition>();
         positions.TrimExcess();
 
-        int[] indexes = stringIndexFinder.GetCharIndexes(input, expected, ignoreCase).ToArray();
+        int[] indexes = _stringIndexFinder.GetCharIndexes(input, expected, ignoreCase).ToArray();
 
         foreach (int index in indexes)
         {
@@ -123,7 +122,7 @@ public class StringPositionFinder : IStringPositionFinder
     {
         List<StringPosition> positions = new();
         
-        int[] indexes = stringIndexFinder.GetStringIndexes(str, expected, ignoreCase).ToArray();
+        int[] indexes = _stringIndexFinder.GetStringIndexes(str, expected, ignoreCase).ToArray();
 
         if (indexes.Any() && indexes[0] != -1)
         {

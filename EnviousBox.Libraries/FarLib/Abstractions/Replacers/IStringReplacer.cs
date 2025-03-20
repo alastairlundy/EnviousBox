@@ -15,16 +15,19 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections;
 using System.Collections.Generic;
+using AlastairLundy.FarLib.Models;
 
-namespace Far.Library.Abstractions;
+namespace AlastairLundy.FarLib.Abstractions.Replacers;
 
-public interface IStringIndexFinder
+public interface IStringReplacer
 {
-    public IEnumerable<int> GetStringIndexes(string toBeSearched, string expected, bool ignoreCase);
-    public IEnumerable<int> GetStringIndexes(IEnumerable<string> strings, string expected, bool ignoreCase);
-    public IEnumerable<int> GetCharIndexes(IEnumerable<string> strings, char expected, bool ignoreCase);
-    
-    public IEnumerable<int> GetCharIndexes(string toBeSearched, char expected, bool ignoreCase);
+    public string Replace(string original, StringPosition itemPositionToReplace, string replacement);
+    public string Replace(string original, SearchResultItem itemToBeReplaced, string replacement);
+    public IEnumerable<string> Replace(IEnumerable<string> enumerable, SearchResultItem itemToBeReplaced, string replacement);
+
+    public string ReplacePartialMatch(string original, string toBeReplaced, string replacementString);
+
+    public IEnumerable<string> ReplacePartialMatch(IEnumerable<string> enumerable, string toBeReplaced,
+        string replacementString);
 }

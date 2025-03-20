@@ -15,13 +15,11 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using AlastairLundy.FarLib.Models;
 
-using Far.Library.Models;
-
-namespace Far.Library.Abstractions;
+namespace AlastairLundy.FarLib.Abstractions;
 
 public interface IStringSearcher
 {

@@ -18,6 +18,7 @@
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <Description>A .NET library to encode and decode strings using the Caesar Cipher.</Description>
     </PropertyGroup>
 
 </Project>

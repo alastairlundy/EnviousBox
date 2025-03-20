@@ -1,5 +1,5 @@
 # CaesarLib
-A library to encode and decode strings using a Caesar Cipher.
+A .NET library to encode and decode strings using the Caesar Cipher.
 
 *WARNING*: The Caesar cipher [can be cracked](https://en.wikipedia.org/wiki/Caesar_cipher) even without knowing the shift key and should not be used for securing confidential information.
 

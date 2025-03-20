@@ -18,7 +18,8 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-
+using System.Linq;
+using AlastairLundy.CaesarLib;
 using EnviousBox.Cli.Tools.Caesar.Helpers;
 
 using Spectre.Console;
@@ -31,7 +32,7 @@ public class CaesarDecodeFileCommand : Command<CaesarDecodeFileCommand.Settings>
     public class Settings : CommandSettings
     {
         [CommandArgument(0, "<Files>")]
-        public string? File { get; init; }
+        public string[]? Files { get; init; }
         
         [CommandOption("-o|--output:<file>")]
         public string? OutputFile { get; init; }
@@ -42,7 +43,7 @@ public class CaesarDecodeFileCommand : Command<CaesarDecodeFileCommand.Settings>
 
     public override int Execute(CommandContext context, Settings settings)
     {
-        if (settings.File == null)
+        if (settings.Files == null)
         {
             AnsiConsole.WriteException(new FileNotFoundException());
             return -1;
@@ -54,11 +55,9 @@ public class CaesarDecodeFileCommand : Command<CaesarDecodeFileCommand.Settings>
 
         List<string> newValues = new List<string>();
         
-        string[] lines = File.ReadAllLines(settings.File);
-
-        foreach (string line in lines)
+        foreach (string file in settings.Files)
         {
-            string[] newWords = caesarCipher.Decode(File.ReadAllLines(line), shift);
+            string[] newWords = caesarCipher.Decode(File.ReadAllLines(file), shift).ToArray();
 
             foreach (string word in newWords)
             {
@@ -66,11 +65,11 @@ public class CaesarDecodeFileCommand : Command<CaesarDecodeFileCommand.Settings>
             }
         }
 
-        if (settings.OutputFile == null)
+        if (settings.OutputFile is null)
         {
             try
             {
-                File.WriteAllLines(settings.File, newValues);
+                File.WriteAllLines(settings.Files.First(), newValues);
                 return 0;
             }
             catch (Exception exception)

@@ -17,7 +17,8 @@
 
 using System;
 using System.IO;
-
+using System.Linq;
+using AlastairLundy.CaesarLib;
 using EnviousBox.Cli.Tools.Caesar.Helpers;
 
 using Spectre.Console;
@@ -51,7 +52,7 @@ public class CaesarEncodeCommand : Command<CaesarEncodeCommand.Settings>
         
         CaesarCipher caesarCipher = new CaesarCipher();
         
-        string[] newValues = caesarCipher.Encode(settings.Words!, shift);
+        string[] newValues = caesarCipher.Encode(settings.Words!, shift).ToArray();
 
         if (settings.OutputFile != null)
         {

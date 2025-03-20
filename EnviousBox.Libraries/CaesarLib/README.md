@@ -1,5 +1,5 @@
 # CaesarLib
-A library to encode and decode strings using a Caesar Cipher.
+A .NET library to encode and decode strings using the Caesar Cipher.
 
 *WARNING*: The Caesar cipher [can be cracked](https://en.wikipedia.org/wiki/Caesar_cipher) even without knowing the shift key and should not be used for securing confidential information.
 
@@ -15,4 +15,6 @@ If you have any changes you'd like to contribute, please open an issue and discu
 ## Roadmap
 CaesarLib is developed as part of EnviousBox and is part of EnviousBox's roadmap and lifecycle.
 
-Please refer to that for an up-to-date roadmap.
+Please refer to that for a more comprehensive roadmap.
+
+For CaesarLib specifically, adding support for foreign languages that use the latin alphabet with accents would be nice to add in the future as well as additional language support more broadly. 

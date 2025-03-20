@@ -15,6 +15,8 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+using System.Collections;
+
 namespace Where.Library;
 
 public class DirectorySearcher
@@ -24,12 +26,12 @@ public class DirectorySearcher
         
     }
 
-    public static string[] GetFilesAndFoldersWithName(string name)
+    public static IEnumerable<string> GetFilesAndFoldersWithName(string name)
     {
         
     } 
     
-    public static string[] GetFilesAndFoldersContainingName(string name)
+    public static IEnumerable<string> GetFilesAndFoldersContainingName(string name)
     {
         
     } 

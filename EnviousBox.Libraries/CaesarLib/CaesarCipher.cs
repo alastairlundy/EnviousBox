@@ -25,24 +25,24 @@ using AlastairLundy.CaesarLib.Helpers;
 namespace AlastairLundy.CaesarLib
 {
     /// <summary>
-    /// 
+    /// A class that supports encoding and decoding text using the CaesarCipher.
     /// </summary>
     public class CaesarCipher
     {
 
         /// <summary>
-        /// 
+        /// Encodes a normal string of latin alphabet text using the CaesarCipher, shifting each letter by a specified key.
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="shift"></param>
-        /// <returns></returns>
-        public string Encode(string value, int shift)
+        /// <param name="s">The string to be encoded.</param>
+        /// <param name="shift">The amount to shift letters by.</param>
+        /// <returns>The encoded string.</returns>
+        public string Encode(string s, int shift)
         {
             StringBuilder stringBuilder = new StringBuilder();
         
-            for (int characterIndex = 0; characterIndex < value.Length; characterIndex++)
+            for (int characterIndex = 0; characterIndex < s.Length; characterIndex++)
             {
-                char character = value[characterIndex];
+                char character = s[characterIndex];
 
                 if (character.ToString().Equals(character.ToString().ToUpper()))
                 {
@@ -60,16 +60,16 @@ namespace AlastairLundy.CaesarLib
         }
     
         /// <summary>
-        /// 
+        /// Encodes an IEnumerable of strings of latin alphabet text using the CaesarCipher, shifting each letter by a specified key.
         /// </summary>
-        /// <param name="values"></param>
-        /// <param name="shift"></param>
-        /// <returns></returns>
-        public IEnumerable<string> Encode(IEnumerable<string> values, int shift)
+        /// <param name="enumerable">The IEnumerable of strings to be encoded.</param>
+        /// <param name="shift">The amount to shift letters by.</param>
+        /// <returns>The encoded strings as an IEnumerable.</returns>
+        public IEnumerable<string> Encode(IEnumerable<string> enumerable, int shift)
         {
             List<string> strings = new List<string>();
 
-            foreach (string value in values)
+            foreach (string value in enumerable)
             {
                 strings.Add(Encode(value, shift));
             }
@@ -78,18 +78,18 @@ namespace AlastairLundy.CaesarLib
         }
 
         /// <summary>
-        /// 
+        /// Decodes an encoded string of CaesarCipher text to a normal string of latin alphabet text, shifting each letter by a specified key.
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="shift"></param>
-        /// <returns></returns>
-        public string Decode(string value, int shift)
+        /// <param name="s">The string to be decoded.</param>
+        /// <param name="shift">The amount to shift letters by.</param>
+        /// <returns>The decoded string.</returns>
+        public string Decode(string s, int shift)
         {
             StringBuilder stringBuilder = new StringBuilder();
         
-            for (int characterIndex = 0; characterIndex < value.Length; characterIndex++)
+            for (int characterIndex = 0; characterIndex < s.Length; characterIndex++)
             {
-                char character = value[characterIndex];
+                char character = s[characterIndex];
 
                 if (character.ToString().Equals(character.ToString().ToUpper()))
                 {
@@ -107,16 +107,16 @@ namespace AlastairLundy.CaesarLib
         }
 
         /// <summary>
-        /// 
+        /// Decodes an IEnumerable of strings of CaesarCipher text to a normal string of latin alphabet text, shifting each letter by a specified key.
         /// </summary>
-        /// <param name="values"></param>
-        /// <param name="shift"></param>
-        /// <returns></returns>
-        public IEnumerable<string> Decode(IEnumerable<string> values, int shift)
+        /// <param name="enumerable"></param>
+        /// <param name="shift">The amount to shift letters by.</param>
+        /// <returns>The decoded strings as an IEnumerable.</returns>
+        public IEnumerable<string> Decode(IEnumerable<string> enumerable, int shift)
         {
             List<string> strings = new List<string>();
 
-            foreach (string value in values)
+            foreach (string value in enumerable)
             {
                 strings.Add(Decode(value, shift));
             }

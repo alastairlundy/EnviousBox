@@ -29,6 +29,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="AlastairLundy.Extensions.System" Version="6.1.0" />
       <PackageReference Include="Microsoft.Extensions.Primitives" Version="[9.0.3, 10.0.0)" />
     </ItemGroup>
 </Project>

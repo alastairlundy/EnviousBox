@@ -21,10 +21,10 @@ namespace AlastairLundy.CaesarLib.Abstractions
 {
     public interface ICaesarCipherEncoder
     {
-        char EncodeCharacter(char character, int shift);
+        char EncodeCharacter(char input, int shift);
         
-        string EncodeString(string stringToEncode, int shift);
+        string EncodeString(string input, int shift);
         
-        StringSegment EncodeStringSegment(StringSegment stringToEncode, int shift);
+        StringSegment EncodeStringSegment(StringSegment input, int shift);
     }
 }

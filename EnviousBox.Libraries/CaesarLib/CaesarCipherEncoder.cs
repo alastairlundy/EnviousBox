@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Text;
 
 using AlastairLundy.CaesarLib.Abstractions;
@@ -74,9 +75,16 @@ namespace AlastairLundy.CaesarLib
 
         public StringSegment EncodeStringSegment(StringSegment input, int shift)
         { 
-            string encodedString = EncodeString(input.Value, shift);
+            StringBuilder stringBuilder = new StringBuilder();
             
-            return new StringSegment(encodedString);
+            for(int i = 0; i < input.Length; i++)
+            {
+                char character = EncodeCharacter(input[i], shift);
+                
+                stringBuilder.Append(character);
+            }
+            
+            return new StringSegment(stringBuilder.ToString());
         }
     }
 }
